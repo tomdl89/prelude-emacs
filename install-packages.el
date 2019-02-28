@@ -1,2 +1,3 @@
 (prelude-require-packages '(zerodark-theme
-                            evil-leader))
+                            evil-leader
+                            doom-modeline))

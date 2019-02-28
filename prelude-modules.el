@@ -9,6 +9,7 @@
 (require 'prelude-company)
 ;; (require 'prelude-key-chord) ;; Binds useful features to key combinations
 (require 'prelude-evil)
+(require 'doom-modeline)
 
 ;;; Programming languages support
 (require 'prelude-c)
