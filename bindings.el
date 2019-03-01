@@ -38,8 +38,9 @@
 (global-set-key [C-tab] 'ace-window)
 (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
 
-;; Always paste from yank register, rather than unnamed register
-(defun evil-paste-from-zero (count) (interactive "P<x>") (evil-paste-after count ?0))
+(defun evil-paste-from-zero (count)
+    "Always paste from yank register, rather than unnamed register"
+    (interactive "P<x>") (evil-paste-after count ?0))
 (define-key evil-normal-state-map (kbd "p") 'evil-paste-from-zero)
 ;; Allow old `p` behaviour if using Ctrl
 (define-key evil-normal-state-map (kbd "C-p") 'evil-paste-after)
