@@ -2,6 +2,7 @@
 (define-key evil-motion-state-map (kbd "m") 'evil-next-line)
 
 (define-key evil-motion-state-map (kbd "C-m") 'evil-scroll-down)
+(define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
 
 (define-key evil-motion-state-map (kbd "u") 'evil-previous-line)
 (define-key evil-normal-state-map (kbd "u") 'evil-previous-line)
@@ -36,3 +37,9 @@
 
 (global-set-key [C-tab] 'ace-window)
 (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
+
+;; Always paste from yank register, rather than unnamed register
+(defun evil-paste-from-zero (count) (interactive "P<x>") (evil-paste-after count ?0))
+(define-key evil-normal-state-map (kbd "p") 'evil-paste-from-zero)
+;; Allow old `p` behaviour if using Ctrl
+(define-key evil-normal-state-map (kbd "C-p") 'evil-paste-after)
