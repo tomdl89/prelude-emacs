@@ -29,6 +29,17 @@
 (define-key evil-insert-state-map (kbd "C-<") 'sp-backward-barf-sexp)
 (define-key evil-normal-state-map (kbd "C-<") 'sp-backward-barf-sexp)
 
+(define-key evil-normal-state-map (kbd "H") 'sp-next-sexp)
+(define-key evil-normal-state-map (kbd "N") 'sp-backward-sexp)
+(define-key evil-normal-state-map (kbd "U") 'sp-up-sexp)
+(define-key evil-normal-state-map (kbd "M") 'sp-down-sexp)
+
+(define-key evil-normal-state-map (kbd "C-a") 'mark-whole-buffer)
+(define-key evil-insert-state-map (kbd "C-a") 'mark-whole-buffer)
+
+(define-key evil-normal-state-map (kbd "£") 'counsel-find-file)
+
+
 (define-key evil-normal-state-map (kbd "SPC") 'avy-goto-char)
 (define-key evil-motion-state-map (kbd "SPC") 'avy-goto-char)
 (define-key evil-motion-state-map (kbd "\\") 'avy-goto-char-2)
@@ -39,8 +50,6 @@
 (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
 
 (defun evil-paste-from-zero (count)
-    "Always paste from yank register, rather than unnamed register"
-    (interactive "P<x>") (evil-paste-after count ?0))
-(define-key evil-normal-state-map (kbd "p") 'evil-paste-from-zero)
-;; Allow old `p` behaviour if using Ctrl
-(define-key evil-normal-state-map (kbd "C-p") 'evil-paste-after)
+  "Paste from yank register, rather than unnamed register"
+  (interactive "P<x>") (evil-paste-after count ?0))
+(define-key evil-normal-state-map (kbd "C-p") 'evil-paste-from-zero)
