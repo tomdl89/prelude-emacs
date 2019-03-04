@@ -1,4 +1,5 @@
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (desktop-save-mode 1)
 (doom-modeline-mode 1)
