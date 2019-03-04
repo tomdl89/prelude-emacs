@@ -10,3 +10,11 @@
 (setq display-time-24hr-format 1)
 (setq display-time-default-load-average nil)
 (display-time-mode 1)
+
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(setq highlight-indent-guides-auto-odd-face-perc 20)
+(setq highlight-indent-guides-auto-even-face-perc 20)
+(setq highlight-indent-guides-auto-character-face-perc 5)
+(setq highlight-indent-guides-character ?▏)
+(setq highlight-indent-guides-method 'character)
+(setq highlight-indent-guides-responsive 'top)
