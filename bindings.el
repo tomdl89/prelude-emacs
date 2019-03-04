@@ -38,6 +38,11 @@
 (define-key evil-insert-state-map (kbd "C-a") 'mark-whole-buffer)
 
 (define-key evil-normal-state-map (kbd "£") 'counsel-find-file)
+(define-key evil-normal-state-map (kbd "<f3>") 'counsel-recentf)
+(define-key evil-normal-state-map (kbd "b") 'counsel-switch-buffer)
+(define-key evil-normal-state-map (kbd "B") 'kill-buffer)
+(define-key evil-normal-state-map (kbd "C-b") 'evil-backward-word-begin)
+(define-key evil-normal-state-map (kbd "C-B") 'evil-backward-WORD-begin)
 
 
 (define-key evil-normal-state-map (kbd "SPC") 'avy-goto-char)
