@@ -2,4 +2,5 @@
                             evil-leader
                             evil-exchange
                             doom-modeline
-                            highlight-indent-guides))
+                            highlight-indent-guides
+                            highlight-thing))

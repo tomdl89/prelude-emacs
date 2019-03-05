@@ -18,3 +18,6 @@
 (setq highlight-indent-guides-character ?▏)
 (setq highlight-indent-guides-method 'character)
 (setq highlight-indent-guides-responsive 'top)
+
+;; Highlight thing mode
+(setq highlight-thing-delay-seconds 0.2)
