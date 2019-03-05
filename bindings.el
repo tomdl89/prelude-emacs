@@ -55,7 +55,14 @@
 (global-set-key [C-tab] 'ace-window)
 (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
 
-(defun evil-paste-from-zero (count)
-  "Paste from yank register, rather than unnamed register"
+(defun evil-paste-after-from-zero (count)
+  "Paste after from yank register, rather than unnamed register"
   (interactive "P<x>") (evil-paste-after count ?0))
-(define-key evil-normal-state-map (kbd "C-p") 'evil-paste-from-zero)
+(defun evil-paste-before-from-zero (count)
+  "Paste before from yank register, rather than unnamed register"
+  (interactive "P<x>") (evil-paste-before count ?0))
+(define-key evil-normal-state-map (kbd "C-p") 'evil-paste-after-from-zero)
+(define-key evil-normal-state-map (kbd "C-S-p") 'evil-paste-before-from-zero)
+
+(evil-add-hjkl-bindings magit-status-mode-map 'emacs
+  "m" 'evil-next-visual-line)
