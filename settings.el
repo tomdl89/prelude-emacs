@@ -15,7 +15,7 @@
 (setq highlight-indent-guides-auto-odd-face-perc 20)
 (setq highlight-indent-guides-auto-even-face-perc 20)
 (setq highlight-indent-guides-auto-character-face-perc 5)
-(setq highlight-indent-guides-character ?▏)
+(setq highlight-indent-guides-character ?\u2502)
 (setq highlight-indent-guides-method 'character)
 (setq highlight-indent-guides-responsive 'top)
 

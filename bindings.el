@@ -50,7 +50,7 @@
 (define-key evil-motion-state-map (kbd "SPC") 'avy-goto-char)
 (define-key evil-motion-state-map (kbd "\\") 'avy-goto-char-2)
 ;; Avy customization
-(setq avy-keys '(?a ?s ?e ?t ?g ?n ?i ?o ?h ?w ?d ?r ?l))
+(setq avy-keys '(?n ?t ?i ?e ?o ?s ?h ?a ?g ?y ?l ?w ?r ?d))
 
 (global-set-key [C-tab] 'ace-window)
 (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
