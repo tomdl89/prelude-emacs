@@ -3,4 +3,5 @@
                             evil-exchange
                             doom-modeline
                             highlight-indent-guides
-                            highlight-thing))
+                            highlight-thing
+                            evil-mc))

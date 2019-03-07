@@ -21,3 +21,9 @@
 
 ;; Highlight thing mode
 (setq highlight-thing-delay-seconds 0.2)
+
+;; Set column after which text is highlighted
+(setq whitespace-line-column 100)
+
+;; Evil mc mode everywhere
+(global-evil-mc-mode  1)
