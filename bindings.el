@@ -64,5 +64,5 @@
 (define-key evil-normal-state-map (kbd "C-p") 'evil-paste-after-from-zero)
 (define-key evil-normal-state-map (kbd "C-S-p") 'evil-paste-before-from-zero)
 
-(evil-add-hjkl-bindings magit-status-mode-map 'emacs
-  "m" 'evil-next-visual-line)
+(evil-add-hjkl-bindings magit-status-mode-map 'emacs "m" 'evil-next-visual-line)
+;; Weirdly, ^this overrides merge, but the same with "u" doesn't override unstage

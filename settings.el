@@ -27,3 +27,5 @@
 
 ;; Evil mc mode everywhere
 (global-evil-mc-mode  1)
+(evil-define-key 'normal evil-mc-key-map (kbd "C-p") 'evil-paste-after-from-zero)
+(evil-define-key 'visual evil-mc-key-map (kbd "C-p") 'evil-paste-after-from-zero)
