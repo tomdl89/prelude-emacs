@@ -24,6 +24,14 @@
   "C-*"     'highlight-thing-mode
   "C-M-m"   'evil-mc-make-cursor-move-next-line)
 
+;; Other keys involving motion state
+(general-def
+  :states   'motion
+  "b"       'counsel-switch-buffer
+  "B"       'kill-buffer
+  "C-b"     'evil-backward-word-begin
+  "C-B"     'evil-backward-word-begin)
+
 ;; Other keys involving insert mode
 (general-def
   :states   '(normal insert)
@@ -72,4 +80,6 @@
   "C-u"     'magit-unstage
   "m"       'evil-next-line
   "C-m"     'magit-merge
-  "<C-tab>" 'ace-window)
+  "<C-tab>" 'ace-window
+  "£"       'counsel-find-file
+  "<f3>"    'counsel-recentf)
