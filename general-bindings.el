@@ -67,7 +67,9 @@
 
 ;; Magit overrides
 (general-def
-  :keymaps  'magit-mode-map
+  :keymaps  '(magit-mode-map magit-file-section-map)
   "u"       'evil-previous-line
+  "C-u"     'magit-unstage
   "m"       'evil-next-line
+  "C-m"     'magit-merge
   "<C-tab>" 'ace-window)
