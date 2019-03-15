@@ -4,4 +4,6 @@
                             doom-modeline
                             highlight-indent-guides
                             highlight-thing
-                            evil-mc))
+                            evil-mc
+                            evil-cleverparens
+                            general))
