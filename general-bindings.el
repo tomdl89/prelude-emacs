@@ -72,14 +72,22 @@
   :states   'normal
   "C-p"     'evil-paste-after-from-zero
   "C-P"     'evil-paste-before-from-zero)
+(defun avy-goto-asterisk ()
+  "Use avy-goto-char with asterisk, for navigating magit log"
+  (interactive) (avy-goto-char ?*))
 
 ;; Magit overrides
 (general-def
-  :keymaps  '(magit-mode-map magit-file-section-map)
+  :keymaps  '(magit-mode-map
+              magit-file-section-map
+              magit-unstaged-section-map
+              magit-staged-section-map
+              magit-hunk-section-map)
   "u"       'evil-previous-line
   "C-u"     'magit-unstage
   "m"       'evil-next-line
   "C-m"     'magit-merge
+  "SPC"     'avy-goto-asterisk
   "<C-tab>" 'ace-window
   "£"       'counsel-find-file
   "<f3>"    'counsel-recentf)
