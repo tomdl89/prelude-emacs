@@ -27,10 +27,14 @@
 ;; Other keys involving motion state
 (general-def
   :states   'motion
+  "£"       'counsel-find-file
+  "<f3>"    'counsel-recentf
   "b"       'counsel-switch-buffer
   "B"       'kill-buffer
   "C-b"     'evil-backward-word-begin
-  "C-B"     'evil-backward-word-begin)
+  "C-B"     'evil-backward-word-begin
+  "("       'evil-previous-open-paren
+  ")"       'evil-next-close-paren)
 
 ;; Other keys involving insert mode
 (general-def
@@ -60,6 +64,7 @@
 
 ;; Ivy minibuffer escape
 (general-def :keymaps 'ivy-minibuffer-map "ESC" 'minibuffer-keyboard-quit)
+(general-def "C-x ESC ESC" 'minibuffer-keyboard-quit)
 
 ;; Custom functions
 (defun evil-paste-after-from-zero (count)
@@ -72,9 +77,21 @@
   :states   'normal
   "C-p"     'evil-paste-after-from-zero
   "C-P"     'evil-paste-before-from-zero)
+
 (defun avy-goto-asterisk ()
   "Use avy-goto-char with asterisk, for navigating magit log"
   (interactive) (avy-goto-char ?*))
+
+(defun evil-search-forward-symbol ()
+  "Search forward for symbol at point, rather than word"
+  (interactive) (evil-search-word t nil t))
+(defun evil-search-backward-symbol ()
+  "Search backward for symbol at point, rather than word"
+  (interactive) (evil-search-word nil nil t))
+(general-def
+  :states   '(normal motion visual)
+  "*"       'evil-search-forward-symbol
+  "#"       'evil-search-backward-symbol)
 
 ;; Magit overrides
 (general-def
@@ -86,7 +103,7 @@
   "u"       'evil-previous-line
   "C-u"     'magit-unstage
   "m"       'evil-next-line
-  "C-m"     'magit-merge
+  ;"C-m"     'magit-merge
   "SPC"     'avy-goto-asterisk
   "<C-tab>" 'ace-window
   "£"       'counsel-find-file
