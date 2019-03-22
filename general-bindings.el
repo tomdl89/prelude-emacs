@@ -91,7 +91,9 @@
 (general-def
   :states   '(normal motion visual)
   "*"       'evil-search-forward-symbol
-  "#"       'evil-search-backward-symbol)
+  "M-*"     'evil-search-word-forward
+  "#"       'evil-search-backward-symbol
+  "M-#"     'evil-search-word-backward)
 
 ;; Magit overrides
 (general-def
