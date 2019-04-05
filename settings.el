@@ -32,3 +32,7 @@
 
 ;; Add jsxinc to auto mode list
  (add-to-list 'auto-mode-alist '("\\.jsxinc\\'" . js-jsx-mode))
+
+;; Evil-clever-parens in lisps
+(add-hook 'clojure-mode #'evil-cleverparens-mode)
+(add-hook 'lisp-mode    #'evil-cleverparens-mode)

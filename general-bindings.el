@@ -22,6 +22,7 @@
   "C-b"     'evil-backward-word-begin
   "C-B"     'evil-backward-word-begin
   "C-*"     'highlight-thing-mode
+  "C-F"     'counsel-git-grep
   "C-M-m"   'evil-mc-make-cursor-move-next-line)
 
 ;; Other keys involving motion state
@@ -35,6 +36,13 @@
   "C-B"     'evil-backward-word-begin
   "("       'evil-previous-open-paren
   ")"       'evil-next-close-paren)
+
+;; Cleverparens override
+(general-def
+  :states   '(normal motion)
+  :keymaps  'evil-cleverparens-mode-map
+  "b"       'counsel-switch-buffer
+  "B"       'kill-buffer)
 
 ;; Other keys involving insert mode
 (general-def
@@ -60,6 +68,8 @@
 ;; Avy keys
 (setq avy-keys '(?n ?t ?i ?e ?o ?s ?h ?a ?g ?y ?l ?w ?r ?d))
 (general-def :states '(motion normal) "SPC" 'avy-goto-char)
+(setq aw-keys '(?n ?i ?h ?y ?l ?r ?t ?e ?s ?a ?g ?w ?d))
+(setq aw-scope 'frame)
 (general-def "<C-tab>" 'ace-window)
 
 ;; Ivy minibuffer escape
@@ -94,6 +104,15 @@
   "M-*"     'evil-search-word-forward
   "#"       'evil-search-backward-symbol
   "M-#"     'evil-search-word-backward)
+
+(defun evil-insert-line-below-and-above ()
+  "Open a line below and above the current line"
+  (interactive)
+  (evil-insert-newline-below)
+  (evil-insert-newline-above))
+(general-def
+  :states   '(normal)
+  "C-o"     'evil-insert-line-below-and-above)
 
 ;; Magit overrides
 (general-def
