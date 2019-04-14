@@ -1,6 +1,7 @@
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
-(add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'prog-mode-hook 'evil-commentary-mode)
 (desktop-save-mode 1)
 (doom-modeline-mode 1)
 (setq doom-modeline-height 10)
@@ -27,8 +28,11 @@
 
 ;; Evil mc mode everywhere
 (global-evil-mc-mode  1)
-(evil-define-key 'normal evil-mc-key-map (kbd "C-p") 'evil-paste-after-from-zero)
-(evil-define-key 'visual evil-mc-key-map (kbd "C-p") 'evil-paste-after-from-zero)
+(general-def
+  :states   'normal
+  :keymaps  'evil-mc-key-map
+  "C-p"     'evil-paste-after-from-zero
+  "C-S-p"   'evil-paste-before-from-zero)
 
 ;; Add jsxinc to auto mode list
  (add-to-list 'auto-mode-alist '("\\.jsxinc\\'" . js-jsx-mode))
@@ -36,3 +40,6 @@
 ;; Evil-clever-parens in lisps
 (add-hook 'clojure-mode #'evil-cleverparens-mode)
 (add-hook 'lisp-mode    #'evil-cleverparens-mode)
+
+;; Add auto-alignment in clojure
+(setq clojure-align-forms-automatically t)

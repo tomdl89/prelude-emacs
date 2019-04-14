@@ -15,39 +15,37 @@
   "l"       'evil-set-marker
   "k"       'evil-search-next
   "K"       'evil-search-previous
-  "£"       'counsel-find-file
+  "£"       'counsel-switch-buffer
+  "C-£"     'counsel-find-file
+  "M-£"     'kill-buffer
   "<f3>"    'counsel-recentf
-  "b"       'counsel-switch-buffer
-  "B"       'kill-buffer
-  "C-b"     'evil-backward-word-begin
-  "C-B"     'evil-backward-word-begin
   "C-*"     'highlight-thing-mode
   "C-F"     'counsel-git-grep
-  "C-M-m"   'evil-mc-make-cursor-move-next-line)
+  "C-M-m"   'evil-mc-make-cursor-move-next-line
+  "gl"      'evil-lion-left
+  "gL"      'evil-lion-right)
 
 ;; Other keys involving motion state
 (general-def
   :states   'motion
-  "£"       'counsel-find-file
+  "k"       'evil-search-next
+  "K"       'evil-search-previous
+  "£"       'counsel-switch-buffer
+  "C-£"     'counsel-find-file
+  "M-£"     'kill-buffer
   "<f3>"    'counsel-recentf
-  "b"       'counsel-switch-buffer
-  "B"       'kill-buffer
-  "C-b"     'evil-backward-word-begin
-  "C-B"     'evil-backward-word-begin
   "("       'evil-previous-open-paren
   ")"       'evil-next-close-paren)
-
-;; Cleverparens override
-(general-def
-  :states   '(normal motion)
-  :keymaps  'evil-cleverparens-mode-map
-  "b"       'counsel-switch-buffer
-  "B"       'kill-buffer)
 
 ;; Other keys involving insert mode
 (general-def
   :states   '(normal insert)
   "C-a"     'mark-whole-buffer)
+
+;; Other keys involving visual mode
+(general-def
+  :states   'visual
+  "gx"      'evil-exchange)
 
 ;; Sexp normal keys
 (general-def
@@ -65,6 +63,11 @@
   "C->"     'sp-forward-barf-sexp
   "C-<"     'sp-backward-barf-sexp)
 
+;; Make escape like C-g
+(general-def
+  :keymaps   'override
+  "<escape>" 'keyboard-escape-quit)
+
 ;; Avy keys
 (setq avy-keys '(?n ?t ?i ?e ?o ?s ?h ?a ?g ?y ?l ?w ?r ?d))
 (general-def :states '(motion normal) "SPC" 'avy-goto-char)
@@ -72,9 +75,13 @@
 (setq aw-scope 'frame)
 (general-def "<C-tab>" 'ace-window)
 
-;; Ivy minibuffer escape
-(general-def :keymaps 'ivy-minibuffer-map "ESC" 'minibuffer-keyboard-quit)
-(general-def "C-x ESC ESC" 'minibuffer-keyboard-quit)
+;; Resize windows
+(general-def
+  :states     '(normal insert motion)
+  "<C-up>"    'enlarge-window
+  "<C-down>"  'shrink-window
+  "<C-left>"  'shrink-window-horizontally
+  "<C-right>" 'enlarge-window-horizontally)
 
 ;; Custom functions
 (defun evil-paste-after-from-zero (count)
@@ -127,5 +134,7 @@
   ;"C-m"     'magit-merge
   "SPC"     'avy-goto-asterisk
   "<C-tab>" 'ace-window
-  "£"       'counsel-find-file
+  "£"       'counsel-switch-buffer
+  "C-£"     'counsel-find-file
+  "M-£"     'kill-buffer
   "<f3>"    'counsel-recentf)

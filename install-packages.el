@@ -6,4 +6,8 @@
                             highlight-thing
                             evil-mc
                             evil-cleverparens
+                            evil-commentary
+                            evil-lion
+                            rjsx-mode
+                            prettier-js
                             general))
