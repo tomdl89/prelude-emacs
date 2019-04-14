@@ -3,14 +3,30 @@
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'evil-commentary-mode)
 (desktop-save-mode 1)
-(doom-modeline-mode 1)
+
+;; Modeline settings
+(doom-modeline-def-modeline 'tomline
+  '(bar workspace-number window-number evil-state god-state
+        ryo-modal xah-fly-keys matches buffer-info remote-host
+        ;buffer-position parrot
+        selection-info)
+  '(persp-name lsp irc mu4e github debug fancy-battery
+               minor-modes input-method
+              ;buffer-encoding
+              major-mode process vcs checker misc-info ))
+(defun setup-custom-doom-modeline ()
+  (doom-modeline-set-modeline 'tomline 'default))
+(add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
 (setq doom-modeline-height 10)
-(setq projectile-project-search-path "~/MetailRepos/")
+(doom-modeline-mode 1)
+(setq which-function-mode nil)
 
 ;; Time in modeline
 (setq display-time-24hr-format 1)
 (setq display-time-default-load-average nil)
 (display-time-mode 1)
+
+(setq projectile-project-search-path "~/MetailRepos/")
 
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (setq highlight-indent-guides-auto-odd-face-perc 20)

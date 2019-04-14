@@ -8,6 +8,7 @@
                             evil-cleverparens
                             evil-commentary
                             evil-lion
+                            evil-quickscope
                             rjsx-mode
                             prettier-js
                             general))
