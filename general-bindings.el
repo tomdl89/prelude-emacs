@@ -9,7 +9,7 @@
 ;; Other normal keys
 (general-def
   :states     'normal
-  "C-m"       'evil-scroll-down
+  "<C-m>"     'evil-scroll-down
   "C-u"       'evil-scroll-up
   "j"         'undo
   "l"         'evil-set-marker

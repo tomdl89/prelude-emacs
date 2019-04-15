@@ -11,4 +11,5 @@
                             evil-quickscope
                             rjsx-mode
                             prettier-js
+                            centered-cursor-mode
                             general))

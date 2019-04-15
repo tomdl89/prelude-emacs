@@ -2,6 +2,7 @@
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'evil-commentary-mode)
+(add-hook 'prog-mode-hook 'centered-cursor-mode)
 (desktop-save-mode 1)
 
 ;; Modeline settings
