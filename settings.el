@@ -22,7 +22,8 @@
 (setq which-function-mode nil)
 
 ;; Time in modeline
-(setq display-time-24hr-format 1)
+(setq display-time-string-forms
+      '((propertize (format-time-string "%H:%M" now) 'face 'bold)))
 (setq display-time-default-load-average nil)
 (display-time-mode 1)
 
@@ -37,7 +38,7 @@
 (setq highlight-indent-guides-responsive 'top)
 
 ;; Highlight thing mode
-(setq highlight-thing-delay-seconds 0.2)
+(setq highlight-thing-delay-seconds 0.3)
 
 ;; Set column after which text is highlighted
 (setq whitespace-line-column 100)
@@ -59,3 +60,15 @@
 
 ;; Add auto-alignment in clojure
 (setq clojure-align-forms-automatically t)
+
+;; Correct file encoding on windows
+(setq utf-translate-cjk-mode nil)
+(set-language-environment 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-selection-coding-system
+ (if (eq system-type 'windows-nt)
+     'utf-16-le
+   'utf-8))
+(prefer-coding-system 'utf-8)
