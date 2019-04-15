@@ -1,72 +1,72 @@
 ;; Basic movement keys
 (general-def
-  :states   '(motion normal visual)
-  "m"       'evil-next-line
-  "u"       'evil-previous-line
-  "n"       'evil-backward-char
-  "h"       'evil-forward-char)
+  :states     '(motion normal visual)
+  "m"         'evil-next-line
+  "u"         'evil-previous-line
+  "n"         'evil-backward-char
+  "h"         'evil-forward-char)
 
 ;; Other normal keys
 (general-def
-  :states   'normal
-  "C-m"     'evil-scroll-down
-  "C-u"     'evil-scroll-up
-  "j"       'undo
-  "l"       'evil-set-marker
-  "k"       'evil-search-next
-  "K"       'evil-search-previous
-  "£"       'counsel-switch-buffer
-  "C-£"     'counsel-find-file
-  "M-£"     'kill-buffer
-  "<f3>"    'counsel-recentf
-  "C-*"     'highlight-thing-mode
-  "C-F"     'counsel-git-grep
-  "C-M-m"   'evil-mc-make-cursor-move-next-line
-  "gl"      'evil-lion-left
-  "gL"      'evil-lion-right)
+  :states     'normal
+  "C-m"       'evil-scroll-down
+  "C-u"       'evil-scroll-up
+  "j"         'undo
+  "l"         'evil-set-marker
+  "k"         'evil-search-next
+  "K"         'evil-search-previous
+  "£"         'counsel-switch-buffer
+  "C-£"       'counsel-find-file
+  "M-£"       'kill-buffer
+  "<f3>"      'counsel-recentf
+  "C-*"       'highlight-thing-mode
+  "C-F"       'counsel-git-grep
+  "C-M-m"     'evil-mc-make-cursor-move-next-line
+  "gl"        'evil-lion-left
+  "gL"        'evil-lion-right)
 
 ;; Other keys involving motion state
 (general-def
-  :states   'motion
-  "k"       'evil-search-next
-  "K"       'evil-search-previous
-  "£"       'counsel-switch-buffer
-  "C-£"     'counsel-find-file
-  "M-£"     'kill-buffer
-  "<f3>"    'counsel-recentf
-  "("       'evil-previous-open-paren
-  ")"       'evil-next-close-paren)
+  :states     'motion
+  "k"         'evil-search-next
+  "K"         'evil-search-previous
+  "£"         'counsel-switch-buffer
+  "C-£"       'counsel-find-file
+  "M-£"       'kill-buffer
+  "<f3>"      'counsel-recentf
+  "("         'evil-previous-open-paren
+  ")"         'evil-next-close-paren)
 
 ;; Other keys involving insert mode
 (general-def
-  :states   '(normal insert)
-  "C-a"     'mark-whole-buffer)
+  :states     '(normal insert)
+  "C-a"       'mark-whole-buffer)
 
 ;; Other keys involving visual mode
 (general-def
-  :states   'visual
-  "gx"      'evil-exchange)
+  :states     'visual
+  "gx"        'evil-exchange)
 
 ;; Sexp normal keys
 (general-def
-  :states   'normal
-  "H"       'sp-next-sexp
-  "N"       'sp-backward-sexp
-  "U"       'sp-up-sexp
-  "M"       'sp-down-sexp)
+  :states     'normal
+  "H"         'sp-next-sexp
+  "N"         'sp-backward-sexp
+  "U"         'sp-up-sexp
+  "M"         'sp-down-sexp)
 
 ;; Sexp keys involving insert
 (general-def
-  :states   '(normal insert)
-  "C-."     'sp-forward-slurp-sexp
-  "C-,"     'sp-backward-slurp-sexp
-  "C->"     'sp-forward-barf-sexp
-  "C-<"     'sp-backward-barf-sexp)
+  :states     '(normal insert)
+  "C-."       'sp-forward-slurp-sexp
+  "C-,"       'sp-backward-slurp-sexp
+  "C->"       'sp-forward-barf-sexp
+  "C-<"       'sp-backward-barf-sexp)
 
 ;; Make escape like C-g
 (general-def
-  :keymaps   'override
-  "<escape>" 'keyboard-escape-quit)
+  :keymaps    'override
+  "<escape>"  'keyboard-escape-quit)
 
 ;; Avy keys
 (setq avy-keys '(?n ?t ?i ?e ?o ?s ?h ?a ?g ?y ?l ?w ?r ?d))
@@ -91,9 +91,9 @@
   "Paste before from yank register, rather than unnamed register"
   (interactive "P<x>") (evil-paste-before count ?0))
 (general-def
-  :states   'normal
-  "C-p"     'evil-paste-after-from-zero
-  "C-P"     'evil-paste-before-from-zero)
+  :states     'normal
+  "C-p"       'evil-paste-after-from-zero
+  "C-P"       'evil-paste-before-from-zero)
 
 (defun avy-goto-asterisk ()
   "Use avy-goto-char with asterisk, for navigating magit log"
@@ -106,11 +106,11 @@
   "Search backward for symbol at point, rather than word"
   (interactive) (evil-search-word nil nil t))
 (general-def
-  :states   '(normal motion visual)
-  "*"       'evil-search-forward-symbol
-  "M-*"     'evil-search-word-forward
-  "#"       'evil-search-backward-symbol
-  "M-#"     'evil-search-word-backward)
+  :states     '(normal motion visual)
+  "*"         'evil-search-forward-symbol
+  "M-*"       'evil-search-word-forward
+  "#"         'evil-search-backward-symbol
+  "M-#"       'evil-search-word-backward)
 
 (defun evil-insert-line-below-and-above ()
   "Open a line below and above the current line"
@@ -118,23 +118,27 @@
   (evil-insert-newline-below)
   (evil-insert-newline-above))
 (general-def
-  :states   '(normal)
-  "C-o"     'evil-insert-line-below-and-above)
+  :states     '(normal)
+  "C-o"       'evil-insert-line-below-and-above)
+
+;; Differentiate C-m from RET
+(general-def input-decode-map [?\C-m] [C-m])
 
 ;; Magit overrides
 (general-def
-  :keymaps  '(magit-mode-map
-              magit-file-section-map
-              magit-unstaged-section-map
-              magit-staged-section-map
-              magit-hunk-section-map)
-  "u"       'evil-previous-line
-  "C-u"     'magit-unstage
-  "m"       'evil-next-line
-  ;"C-m"     'magit-merge
-  "SPC"     'avy-goto-asterisk
-  "<C-tab>" 'ace-window
-  "£"       'counsel-switch-buffer
-  "C-£"     'counsel-find-file
-  "M-£"     'kill-buffer
-  "<f3>"    'counsel-recentf)
+  :keymaps    '(magit-mode-map
+                magit-file-section-map
+                magit-unstaged-section-map
+                magit-staged-section-map
+                magit-hunk-section-map)
+  "u"         'evil-previous-line
+  "C-u"       'magit-unstage
+  "m"         'evil-next-line
+  "<C-m>"     'magit-merge
+  "<return>"  'magit-visit-thing
+  "SPC"       'avy-goto-asterisk
+  "<C-tab>"   'ace-window
+  "£"         'counsel-switch-buffer
+  "C-£"       'counsel-find-file
+  "M-£"       'kill-buffer
+  "<f3>"      'counsel-recentf)
