@@ -4,7 +4,9 @@
   "m"         'evil-next-line
   "u"         'evil-previous-line
   "n"         'evil-backward-char
-  "h"         'evil-forward-char)
+  "h"         'evil-forward-char
+  "H"         'evil-end-of-line
+  "N"         'evil-first-non-blank)
 
 ;; Other normal keys
 (general-def
@@ -23,7 +25,9 @@
   "C-F"       'counsel-git-grep
   "C-M-m"     'evil-mc-make-cursor-move-next-line
   "gl"        'evil-lion-left
-  "gL"        'evil-lion-right)
+  "gL"        'evil-lion-right
+  "zz"        'centered-cursor-mode
+  "X"         'fixup-whitespace)
 
 ;; Other keys involving motion state
 (general-def
@@ -47,14 +51,6 @@
   :states     'visual
   "gx"        'evil-exchange)
 
-;; Sexp normal keys
-(general-def
-  :states     'normal
-  "H"         'sp-next-sexp
-  "N"         'sp-backward-sexp
-  "U"         'sp-up-sexp
-  "M"         'sp-down-sexp)
-
 ;; Sexp keys involving insert
 (general-def
   :states     '(normal insert)
@@ -63,10 +59,12 @@
   "C->"       'sp-forward-barf-sexp
   "C-<"       'sp-backward-barf-sexp)
 
-;; Make escape like C-g
+;; Handle escape
 (general-def
   :keymaps    'override
-  "<escape>"  'keyboard-escape-quit)
+  "<escape>"  'keyboard-escape-quit
+  "C-c ESC"   'ignore)
+(general-def 'ctl-x-map [escape] 'ignore)
 
 ;; Avy keys
 (setq avy-keys '(?n ?t ?i ?e ?o ?s ?h ?a ?g ?y ?l ?w ?r ?d))
@@ -117,9 +115,12 @@
   (interactive)
   (evil-insert-newline-below)
   (evil-insert-newline-above))
-(general-def
-  :states     '(normal)
-  "C-o"       'evil-insert-line-below-and-above)
+(general-def 'normal "C-o" 'evil-insert-line-below-and-above)
+
+(defun evil-execute-q-macro (count)
+  "Execute the q macro, the only one I use"
+  (interactive "P<x>") (evil-execute-macro count "@q"))
+(general-def 'normal "Q" 'evil-execute-q-macro)
 
 ;; Differentiate C-m from RET
 (general-def input-decode-map [?\C-m] [C-m])
