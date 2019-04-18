@@ -3,6 +3,7 @@
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'evil-commentary-mode)
 (add-hook 'prog-mode-hook 'centered-cursor-mode)
+(add-hook 'prog-mode-hook 'evil-quickscope-mode)
 (desktop-save-mode 1)
 
 ;; Modeline settings

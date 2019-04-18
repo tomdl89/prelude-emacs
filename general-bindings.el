@@ -4,26 +4,16 @@
   "m"         'evil-next-line
   "u"         'evil-previous-line
   "n"         'evil-backward-char
-  "h"         'evil-forward-char
-  "H"         'evil-end-of-line
-  "N"         'evil-first-non-blank)
+  "h"         'evil-forward-char)
 
 ;; Other normal keys
 (general-def
   :states     'normal
-  "<C-m>"     'evil-scroll-down
-  "C-u"       'evil-scroll-up
   "j"         'undo
   "l"         'evil-set-marker
   "k"         'evil-search-next
   "K"         'evil-search-previous
   "£"         'counsel-switch-buffer
-  "C-£"       'counsel-find-file
-  "M-£"       'kill-buffer
-  "<f3>"      'counsel-recentf
-  "C-*"       'highlight-thing-mode
-  "C-F"       'counsel-git-grep
-  "C-M-m"     'evil-mc-make-cursor-move-next-line
   "gl"        'evil-lion-left
   "gL"        'evil-lion-right
   "zz"        'centered-cursor-mode
@@ -36,7 +26,7 @@
   "K"         'evil-search-previous
   "£"         'counsel-switch-buffer
   "C-£"       'counsel-find-file
-  "M-£"       'kill-buffer
+  "M-£"       'kill-this-buffer
   "<f3>"      'counsel-recentf
   "("         'evil-previous-open-paren
   ")"         'evil-next-close-paren)
@@ -44,7 +34,16 @@
 ;; Other keys involving insert mode
 (general-def
   :states     '(normal insert)
-  "C-a"       'mark-whole-buffer)
+  "C-a"       'mark-whole-buffer
+  "M-£"       'kill-this-buffer
+  "<C-m>"     'evil-scroll-down
+  "C-£"       'counsel-find-file
+  "M-£"       'kill-this-buffer
+  "<f3>"      'counsel-recentf
+  "C-*"       'highlight-thing-mode
+  "C-F"       'counsel-git-grep
+  "C-M-m"     'evil-mc-make-cursor-move-next-line
+  "M-l"       'linum-mode)
 
 ;; Other keys involving visual mode
 (general-def
@@ -141,5 +140,5 @@
   "<C-tab>"   'ace-window
   "£"         'counsel-switch-buffer
   "C-£"       'counsel-find-file
-  "M-£"       'kill-buffer
+  "M-£"       'magit-mode-bury-buffer
   "<f3>"      'counsel-recentf)
