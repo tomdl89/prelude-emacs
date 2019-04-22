@@ -41,9 +41,10 @@
   "M-£"       'kill-this-buffer
   "<f3>"      'counsel-recentf
   "C-*"       'highlight-thing-mode
-  "C-F"       'counsel-git-grep
+  "C-S-f"     'counsel-git-grep
   "C-M-m"     'evil-mc-make-cursor-move-next-line
-  "M-l"       'linum-mode)
+  "M-l"       'linum-mode
+  "C-r"       'evil-show-registers)
 
 ;; Other keys involving visual mode
 (general-def
@@ -67,7 +68,7 @@
 
 ;; Avy keys
 (setq avy-keys '(?n ?t ?i ?e ?o ?s ?h ?a ?g ?y ?l ?w ?r ?d))
-(general-def :states '(motion normal) "SPC" 'avy-goto-char)
+(general-def '(motion normal) "SPC" 'avy-goto-char)
 (setq aw-keys '(?n ?i ?h ?y ?l ?r ?t ?e ?s ?a ?g ?w ?d))
 (setq aw-scope 'frame)
 (general-def "<C-tab>" 'ace-window)
@@ -90,7 +91,7 @@
 (general-def
   :states     'normal
   "C-p"       'evil-paste-after-from-zero
-  "C-P"       'evil-paste-before-from-zero)
+  "C-S-P"     'evil-paste-before-from-zero)
 
 (defun avy-goto-asterisk ()
   "Use avy-goto-char with asterisk, for navigating magit log"
@@ -121,6 +122,12 @@
   (interactive "P<x>") (evil-execute-macro count "@q"))
 (general-def 'normal "Q" 'evil-execute-q-macro)
 
+(defun evil-ex-replace ()
+  "Start ex command with multi-line replace prefix"
+  (interactive)
+  (evil-ex "%s/"))
+(general-def '(normal insert) "C-f" 'evil-ex-replace)
+
 ;; Differentiate C-m from RET
 (general-def input-decode-map [?\C-m] [C-m])
 
@@ -142,3 +149,19 @@
   "C-£"       'counsel-find-file
   "M-£"       'magit-mode-bury-buffer
   "<f3>"      'counsel-recentf)
+
+;; Cider overrides
+(general-def 'normal 'cider-stacktrace-mode-map "q" 'kill-buffer-and-window)
+
+(defvar repl-history-navigation-mode-map
+  (make-keymap) "repl-history-navigation-mode keymap.")
+(general-def
+  :keymaps 'repl-history-navigation-mode-map
+  "<M-up>"    'cider-repl-previous-input
+  "<M-down>"  'cider-repl-next-input)
+(define-minor-mode repl-history-navigation-mode
+  "Mode to allow keybindings for repl history navigation"
+  nil ;; Init-value
+  " repl-history-nav"
+  repl-history-navigation-mode-map)
+(add-hook 'cider-repl-mode-hook 'repl-history-navigation-mode)

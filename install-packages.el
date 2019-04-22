@@ -1,15 +1,16 @@
-(prelude-require-packages '(zerodark-theme
-                            evil-leader
-                            evil-exchange
+(prelude-require-packages '(centered-cursor-mode
                             doom-modeline
-                            highlight-indent-guides
-                            highlight-thing
-                            evil-mc
                             evil-cleverparens
                             evil-commentary
+                            evil-exchange
+                            evil-leader
                             evil-lion
+                            evil-mc
                             evil-quickscope
-                            rjsx-mode
+                            general
+                            highlight-indent-guides
+                            highlight-thing
                             prettier-js
-                            centered-cursor-mode
-                            general))
+                            rjsx-mode
+                            window-purpose
+                            zerodark-theme))

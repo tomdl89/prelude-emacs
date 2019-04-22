@@ -3,7 +3,12 @@
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'evil-commentary-mode)
 (add-hook 'prog-mode-hook 'centered-cursor-mode)
+;; Cider repl mode is derived from fundamental, not prog...
+(add-hook 'cider-repl-mode-hook 'centered-cursor-mode)
+;; Magit mode is derived from special, not prog...
+(add-hook 'magit-mode 'centered-cursor-mode)
 (add-hook 'prog-mode-hook 'evil-quickscope-mode)
+(add-hook 'prog-mode-hook 'evil-cleverparens-mode)
 (desktop-save-mode 1)
 
 ;; Modeline settings
