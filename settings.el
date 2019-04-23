@@ -18,7 +18,7 @@
         ;buffer-position parrot
         selection-info)
   '(persp-name lsp irc mu4e github debug fancy-battery
-               minor-modes input-method
+               minor-modes input-method " "
               ;buffer-encoding
               major-mode process vcs checker misc-info ))
 (defun setup-custom-doom-modeline ()
