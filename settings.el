@@ -9,14 +9,18 @@
 (add-hook 'magit-mode 'centered-cursor-mode)
 (add-hook 'prog-mode-hook 'evil-quickscope-mode)
 (add-hook 'prog-mode-hook 'evil-cleverparens-mode)
-(desktop-save-mode 1)
+(purpose-mode)
 
 ;; Modeline settings
+(doom-modeline-def-segment purpose-status
+  (let ((pms (purpose--modeline-string)))
+    (and (string-match "[#!]+" pms)
+         (match-string 0       pms))))
 (doom-modeline-def-modeline 'tomline
   '(bar workspace-number window-number evil-state god-state
-        ryo-modal xah-fly-keys matches buffer-info remote-host
+        ryo-modal xah-fly-keys matches buffer-info " " purpose-status
         ;buffer-position parrot
-        selection-info)
+        remote-host selection-info)
   '(persp-name lsp irc mu4e github debug fancy-battery
                minor-modes input-method " "
               ;buffer-encoding
@@ -25,6 +29,7 @@
   (doom-modeline-set-modeline 'tomline 'default))
 (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
 (setq doom-modeline-height 10)
+(setq doom-modeline-buffer-file-name-style 'truncate-except-project)
 (doom-modeline-mode 1)
 (setq which-function-mode nil)
 
@@ -33,6 +38,9 @@
       '((propertize (format-time-string "%H:%M" now) 'face 'bold)))
 (setq display-time-default-load-average nil)
 (display-time-mode 1)
+
+;; Purpose settings
+(setq purpose-layout-dirs '("~/.emacs.d/personal/layouts/"))
 
 (setq projectile-project-search-path "~/MetailRepos/")
 

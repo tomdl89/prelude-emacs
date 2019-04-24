@@ -165,3 +165,10 @@
   " repl-history-nav"
   repl-history-navigation-mode-map)
 (add-hook 'cider-repl-mode-hook 'repl-history-navigation-mode)
+
+;; Cleverparens overrides
+(general-def
+  :states 'normal
+  :keymaps 'evil-cleverparens-mode-map
+  "{"         'evil-backward-paragraph
+  "}"         'evil-forward-paragraph)
