@@ -11,6 +11,7 @@
                             highlight-indent-guides
                             highlight-thing
                             prettier-js
+                            psession
                             rjsx-mode
                             window-purpose
                             zerodark-theme))

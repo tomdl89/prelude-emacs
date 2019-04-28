@@ -9,7 +9,12 @@
 (add-hook 'magit-mode 'centered-cursor-mode)
 (add-hook 'prog-mode-hook 'evil-quickscope-mode)
 (add-hook 'prog-mode-hook 'evil-cleverparens-mode)
+(psession-mode t)
+
+;; Purpose
 (purpose-mode)
+(add-to-list 'purpose-user-mode-purposes '(js2-mode . js))
+(purpose-compile-user-configuration)
 
 ;; Modeline settings
 (doom-modeline-def-segment purpose-status
@@ -23,8 +28,8 @@
         remote-host selection-info)
   '(persp-name lsp irc mu4e github debug fancy-battery
                minor-modes input-method " "
-              ;buffer-encoding
-              major-mode process vcs checker misc-info ))
+               ;buffer-encoding
+               major-mode process vcs checker misc-info ))
 (defun setup-custom-doom-modeline ()
   (doom-modeline-set-modeline 'tomline 'default))
 (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)

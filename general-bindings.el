@@ -16,6 +16,9 @@
   "£"         'counsel-switch-buffer
   "gl"        'evil-lion-left
   "gL"        'evil-lion-right
+  "gm"        'evil-next-visual-line
+  "gu"        'evil-previous-visual-line
+  "gj"        'evil-downcase
   "zz"        'centered-cursor-mode
   "X"         'fixup-whitespace)
 
@@ -28,8 +31,8 @@
   "C-£"       'counsel-find-file
   "M-£"       'kill-this-buffer
   "<f3>"      'counsel-recentf
-  "("         'evil-previous-open-paren
-  ")"         'evil-next-close-paren)
+  "("         'evil-previous-open-paren ; currently overridden by cleveraprens
+  ")"         'evil-next-close-paren)   ; currently overridden by cleveraprens
 
 ;; Other keys involving insert mode
 (general-def
@@ -75,11 +78,15 @@
 
 ;; Resize windows
 (general-def
-  :states     '(normal insert motion)
   "<C-up>"    'enlarge-window
   "<C-down>"  'shrink-window
   "<C-left>"  'shrink-window-horizontally
   "<C-right>" 'enlarge-window-horizontally)
+
+;; Purpose
+(general-def
+  "<f7>"      'purpose-load-window-layout
+  "<C-f7>"    'purpose-save-window-layout)
 
 ;; Custom functions
 (defun evil-paste-after-from-zero (count)
