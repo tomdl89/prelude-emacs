@@ -13,7 +13,7 @@
   "l"         'evil-set-marker
   "k"         'evil-search-next
   "K"         'evil-search-previous
-  "£"         'counsel-switch-buffer
+  "£"         'switch-buffer-without-purpose
   "gl"        'evil-lion-left
   "gL"        'evil-lion-right
   "gm"        'evil-next-visual-line
@@ -27,22 +27,21 @@
   :states     'motion
   "k"         'evil-search-next
   "K"         'evil-search-previous
-  "£"         'counsel-switch-buffer
-  "C-£"       'counsel-find-file
-  "M-£"       'kill-this-buffer
-  "<f3>"      'counsel-recentf
-  "("         'evil-previous-open-paren ; currently overridden by cleveraprens
-  ")"         'evil-next-close-paren)   ; currently overridden by cleveraprens
+  "£"         'switch-buffer-without-purpose
+  "ª"         'counsel-switch-buffer)
 
 ;; Other keys involving insert mode
 (general-def
   :states     '(normal insert)
+  "M-£"       'kill-this-buffer
+  "C-£"       'purpose-switch-buffer-with-purpose
+  "C-M-£"     'kill-some-buffers
+  "<f3>"      'find-file-without-purpose
+  "<M-f3>"    'purpose-find-file-overload
+  "<C-f3>"    'counsel-recentf
+  "<S-f3>"    'counsel-find-file
   "C-a"       'mark-whole-buffer
-  "M-£"       'kill-this-buffer
   "<C-m>"     'evil-scroll-down
-  "C-£"       'counsel-find-file
-  "M-£"       'kill-this-buffer
-  "<f3>"      'counsel-recentf
   "C-*"       'highlight-thing-mode
   "C-S-f"     'counsel-git-grep
   "C-M-m"     'evil-mc-make-cursor-move-next-line
@@ -80,8 +79,8 @@
 (general-def
   "<C-up>"    'enlarge-window
   "<C-down>"  'shrink-window
-  "<C-left>"  'shrink-window-horizontally
-  "<C-right>" 'enlarge-window-horizontally)
+  "<C-left>"  'enlarge-window-horizontally ;; needs to override
+  "<C-right>" 'shrink-window-horizontally) ;; needs to override
 
 ;; Purpose
 (general-def
@@ -135,6 +134,13 @@
   (evil-ex "%s/"))
 (general-def '(normal insert) "C-f" 'evil-ex-replace)
 
+(defun evil-select-in-line ()
+  "Select all text in a line, but not the whole line"
+  (interactive)
+  (evil-first-non-blank)
+  (evil-visual-char)
+  (evil-end-of-line))
+
 ;; Differentiate C-m from RET
 (general-def input-decode-map [?\C-m] [C-m])
 
@@ -173,9 +179,15 @@
   repl-history-navigation-mode-map)
 (add-hook 'cider-repl-mode-hook 'repl-history-navigation-mode)
 
+;; Smartparens overrides
+(general-def 'smartparens-mode-map "M-v" 'evil-select-in-line)
+
 ;; Cleverparens overrides
 (general-def
-  :states 'normal
-  :keymaps 'evil-cleverparens-mode-map
+  :states     'normal
+  :keymaps    'evil-cleverparens-mode-map
   "{"         'evil-backward-paragraph
-  "}"         'evil-forward-paragraph)
+  "}"         'evil-forward-paragraph
+  "M-l"       'linum-mode
+  "("         'evil-previous-open-paren
+  ")"         'evil-next-close-paren)
