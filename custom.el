@@ -14,7 +14,13 @@
     (psession window-purpose ein centered-cursor-mode evil-quickscope evil-commentary prettier-js rjsx-mode evil-lion yaml-mode general evil-cleverparens evil-mc highlight-thing highlight-indent-guides evil-exchange doom-modeline evil-leader zerodark-theme clojure-mode geiser lsp-ui company-lsp json-mode js2-mode rainbow-mode elisp-slime-nav rainbow-delimiters company counsel swiper ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens projectile operate-on-number move-text magit imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region editorconfig easy-kill discover-my-major diminish diff-hl crux browse-kill-ring beacon anzu ace-window)))
  '(safe-local-variable-values
    (quote
-    ((eval font-lock-add-keywords nil
+    ((eval progn
+           (add-to-list
+            (quote exec-path)
+            (concat
+             (locate-dominating-file default-directory ".dir-locals.el")
+             "node_modules/.bin/")))
+     (eval font-lock-add-keywords nil
            (\`
             (((\,
                (concat "("
@@ -30,4 +36,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#282c34" :foreground "#abb2bf" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "Fira Code"))))
  '(hi-yellow ((t (:background "#4e5565")))))
