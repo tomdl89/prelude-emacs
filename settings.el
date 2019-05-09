@@ -22,14 +22,10 @@
     (and (string-match "[#!]+" pms)
          (match-string 0       pms))))
 (doom-modeline-def-modeline 'tomline
-  '(bar workspace-number window-number evil-state god-state
-        ryo-modal xah-fly-keys matches buffer-info " " purpose-status
-        ;buffer-position parrot
-        remote-host selection-info)
-  '(persp-name lsp irc mu4e github debug fancy-battery
-               minor-modes input-method " "
-               ;buffer-encoding
-               major-mode process vcs checker misc-info ))
+  '(bar workspace-name window-number modals matches
+    buffer-info " " purpose-status remote-host selection-info)
+  '(objed-state persp-name fancy-battery irc mu4e github debug lsp
+    minor-modes input-method " " major-mode process vcs checker misc-info))
 (defun setup-custom-doom-modeline ()
   (doom-modeline-set-modeline 'tomline 'default))
 (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)

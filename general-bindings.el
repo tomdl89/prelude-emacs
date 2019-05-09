@@ -184,7 +184,7 @@
 
 ;; Cleverparens overrides
 (general-def
-  :states     'normal
+  :states     '(normal visual)
   :keymaps    'evil-cleverparens-mode-map
   "{"         'evil-backward-paragraph
   "}"         'evil-forward-paragraph
