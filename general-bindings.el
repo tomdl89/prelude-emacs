@@ -20,7 +20,8 @@
   "gu"        'evil-previous-visual-line
   "gj"        'evil-downcase
   "zz"        'centered-cursor-mode
-  "X"         'fixup-whitespace)
+  "X"         'fixup-whitespace
+  "<S-tab>"   'evil-jump-backward)
 
 ;; Other keys involving motion state
 (general-def
@@ -103,17 +104,29 @@
   "Use avy-goto-char with asterisk, for navigating magit log"
   (interactive) (avy-goto-char ?*))
 
-(defun evil-search-forward-symbol ()
-  "Search forward for symbol at point, rather than word"
-  (interactive) (evil-search-word t nil t))
-(defun evil-search-backward-symbol ()
-  "Search backward for symbol at point, rather than word"
-  (interactive) (evil-search-word nil nil t))
+(evil-define-motion evil-search-symbol-forward (count &optional symbol)
+  "Search forward for SYMBOL under point."
+  :jump t
+  :type exclusive
+  (interactive (list (prefix-numeric-value current-prefix-arg)
+                     evil-symbol-word-search))
+  (dotimes (var (or count 1))
+    (evil-search-word t nil t)))
+
+(evil-define-motion evil-search-symbol-backward (count &optional symbol)
+  "Search backward for SYMBOL under point."
+  :jump t
+  :type exclusive
+  (interactive (list (prefix-numeric-value current-prefix-arg)
+                     evil-symbol-word-search))
+  (dotimes (var (or count 1))
+    (evil-search-word nil nil t)))
+
 (general-def
   :states     '(normal motion visual)
-  "*"         'evil-search-forward-symbol
+  "*"         'evil-search-symbol-forward
   "M-*"       'evil-search-word-forward
-  "#"         'evil-search-backward-symbol
+  "#"         'evil-search-symbol-backward
   "M-#"       'evil-search-word-backward)
 
 (defun evil-insert-line-below-and-above ()

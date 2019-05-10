@@ -8,7 +8,7 @@
 ;; Magit mode is derived from special, not prog...
 (add-hook 'magit-mode 'centered-cursor-mode)
 (add-hook 'prog-mode-hook 'evil-quickscope-mode)
-(add-hook 'prog-mode-hook 'evil-cleverparens-mode)
+(add-hook 'lisp-mode-hook 'evil-cleverparens-mode)
 (psession-mode t)
 
 ;; Purpose
