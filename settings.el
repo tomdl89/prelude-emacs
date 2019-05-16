@@ -9,7 +9,11 @@
 (add-hook 'magit-mode 'centered-cursor-mode)
 (add-hook 'prog-mode-hook 'evil-quickscope-mode)
 (add-hook 'lisp-mode-hook 'evil-cleverparens-mode)
-(psession-mode t)
+
+;; LSP config
+(add-hook 'rjsx-mode-hook 'lsp)
+(defun disable-lsp-ui-sideline-mode () (lsp-ui-sideline-enable nil))
+(add-hook 'rjsx-mode-hook 'disable-lsp-ui-sideline-mode)
 
 ;; Purpose
 (purpose-mode)

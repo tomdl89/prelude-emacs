@@ -12,6 +12,7 @@
                             highlight-thing
                             prettier-js
                             psession
+                            restart-emacs
                             rjsx-mode
                             window-purpose
                             zerodark-theme))

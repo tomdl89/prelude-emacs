@@ -88,6 +88,16 @@
   "<f7>"      'purpose-load-window-layout
   "<C-f7>"    'purpose-save-window-layout)
 
+;; Dired
+(general-def
+  :states     'normal
+  :keymaps    'dired-mode-map
+  "m"         'evil-next-line
+  "u"         'evil-previous-line
+  "l"         'dired-mark
+  "L"         'dired-unmark
+  "C-S-l"     'dired-do-load)
+
 ;; Custom functions
 (defun evil-paste-after-from-zero (count)
   "Paste after from yank register, rather than unnamed register"
@@ -175,6 +185,9 @@
   "C-£"       'counsel-find-file
   "M-£"       'magit-mode-bury-buffer
   "<f3>"      'counsel-recentf)
+(general-def
+  "<f13>"     'magit-status
+  "<S-f13>"   'magit-log)
 
 ;; Cider overrides
 (general-def 'normal 'cider-stacktrace-mode-map "q" 'kill-buffer-and-window)
