@@ -12,10 +12,13 @@
 
 ;; LSP config
 (defun disable-lsp-ui-sideline-mode () (lsp-ui-sideline-enable nil))
-(add-hook 'rjsx-mode-hook 'disable-lsp-ui-sideline-mode)
-(add-hook 'js2-mode-hook 'disable-lsp-ui-sideline-mode)
-(add-hook 'rjsx-mode-hook 'lsp)
-(add-hook 'js2-mode-hook 'lsp)
+(dolist (hook '(rjsx-mode-hook
+                js2-mode-hook
+                clojure-mode-hook
+                clojurec-mode-hook
+                clojurescript-mode-hook))
+  (add-hook hook 'disable-lsp-ui-sideline-mode)
+  (add-hook hook 'lsp))
 
 ;; Purpose
 (purpose-mode)
