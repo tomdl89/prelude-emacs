@@ -11,9 +11,11 @@
 (add-hook 'lisp-mode-hook 'evil-cleverparens-mode)
 
 ;; LSP config
-(add-hook 'rjsx-mode-hook 'lsp)
 (defun disable-lsp-ui-sideline-mode () (lsp-ui-sideline-enable nil))
 (add-hook 'rjsx-mode-hook 'disable-lsp-ui-sideline-mode)
+(add-hook 'js2-mode-hook 'disable-lsp-ui-sideline-mode)
+(add-hook 'rjsx-mode-hook 'lsp)
+(add-hook 'js2-mode-hook 'lsp)
 
 ;; Purpose
 (purpose-mode)
@@ -62,6 +64,9 @@
 
 ;; Set column after which text is highlighted
 (setq whitespace-line-column 100)
+
+;; Set gdefault for substitutions
+(setq-default evil-ex-substitute-global t)
 
 ;; Evil mc mode everywhere
 (global-evil-mc-mode  1)

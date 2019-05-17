@@ -94,6 +94,8 @@
   :keymaps    'dired-mode-map
   "m"         'evil-next-line
   "u"         'evil-previous-line
+  "n"         'evil-backward-char
+  "h"         'evil-forward-char
   "l"         'dired-mark
   "L"         'dired-unmark
   "C-S-l"     'dired-do-load)
@@ -106,9 +108,10 @@
   "Paste before from yank register, rather than unnamed register"
   (interactive "P<x>") (evil-paste-before count ?0))
 (general-def
-  :states     'normal
+  :states     '(normal visual)
+  :keymaps    '(global evil-mc-key-map)
   "C-p"       'evil-paste-after-from-zero
-  "C-S-P"     'evil-paste-before-from-zero)
+  "C-S-p"     'evil-paste-before-from-zero)
 
 (defun avy-goto-asterisk ()
   "Use avy-goto-char with asterisk, for navigating magit log"
@@ -152,9 +155,9 @@
 (general-def 'normal "Q" 'evil-execute-q-macro)
 
 (defun evil-ex-replace ()
-  "Start ex command with multi-line replace prefix"
+  "Start ex command with single-line replace prefix"
   (interactive)
-  (evil-ex "%s/"))
+  (evil-ex "s/"))
 (general-def '(normal insert) "C-f" 'evil-ex-replace)
 
 (defun evil-select-in-line ()
