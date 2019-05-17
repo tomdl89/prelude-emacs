@@ -23,6 +23,10 @@
 ;; Purpose
 (purpose-mode)
 (add-to-list 'purpose-user-mode-purposes '(js2-mode . js))
+(add-to-list 'purpose-user-mode-purposes '(clojure-mode . clj))
+(add-to-list 'purpose-user-mode-purposes '(clojurec-mode . clj))
+(add-to-list 'purpose-user-mode-purposes '(clojurescript-mode . clj))
+(add-to-list 'purpose-user-mode-purposes '(cider-repl-mode . crm))
 (purpose-compile-user-configuration)
 
 ;; Modeline settings
