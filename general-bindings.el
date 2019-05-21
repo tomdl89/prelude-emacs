@@ -21,7 +21,8 @@
   "gj"        'evil-downcase
   "zz"        'centered-cursor-mode
   "X"         'fixup-whitespace
-  "<S-tab>"   'evil-jump-backward)
+  "<S-tab>"   'evil-jump-backward
+  "<S-iso-lefttab>" 'evil-jump-backward)
 
 ;; Other keys involving motion state
 (general-def
@@ -44,7 +45,7 @@
   "C-a"       'mark-whole-buffer
   "<C-m>"     'evil-scroll-down
   "C-*"       'highlight-thing-mode
-  "C-S-f"     'counsel-git-grep
+  "C-S-f"     'vc-git-grep
   "C-M-m"     'evil-mc-make-cursor-move-next-line
   "M-l"       'linum-mode
   "C-r"       'evil-show-registers)
@@ -192,9 +193,6 @@
   "<f13>"     'magit-status
   "<S-f13>"   'magit-log)
 
-;; Cider overrides
-(general-def 'normal 'cider-stacktrace-mode-map "q" 'kill-buffer-and-window)
-
 (defvar repl-history-navigation-mode-map
   (make-keymap) "repl-history-navigation-mode keymap.")
 (general-def
@@ -214,7 +212,7 @@
 ;; Cleverparens overrides
 (general-def
   :states     '(normal visual)
-  :keymaps    'evil-cleverparens-mode-map
+  :keymaps    '(global evil-cleverparens-mode-map)
   "{"         'evil-backward-paragraph
   "}"         'evil-forward-paragraph
   "M-l"       'linum-mode
