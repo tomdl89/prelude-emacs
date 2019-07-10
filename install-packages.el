@@ -3,6 +3,7 @@
                             evil-cleverparens
                             evil-commentary
                             evil-exchange
+                            evil-fringe-mark
                             evil-leader
                             evil-lion
                             evil-mc
@@ -10,6 +11,7 @@
                             general
                             highlight-indent-guides
                             highlight-thing
+                            org-bullets
                             prettier-js
                             psession
                             restart-emacs

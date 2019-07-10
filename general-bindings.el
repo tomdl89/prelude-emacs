@@ -79,10 +79,11 @@
 
 ;; Resize windows
 (general-def
+  ;; Guru-mode needs uninstalling for this to work
   "<C-up>"    'enlarge-window
   "<C-down>"  'shrink-window
-  "<C-left>"  'enlarge-window-horizontally ;; needs to override
-  "<C-right>" 'shrink-window-horizontally) ;; needs to override
+  "<C-left>"  'enlarge-window-horizontally
+  "<C-right>" 'shrink-window-horizontally)
 
 ;; Purpose
 (general-def
@@ -127,6 +128,7 @@
   (dotimes (var (or count 1))
     (evil-search-word t nil t)))
 
+;; Probably redundant. See `evil symbol word search' customization
 (evil-define-motion evil-search-symbol-backward (count &optional symbol)
   "Search backward for SYMBOL under point."
   :jump t

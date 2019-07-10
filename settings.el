@@ -1,3 +1,4 @@
+(setq guru-global-mode nil) ;; Incredibly irritating mode
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -8,7 +9,15 @@
 ;; Magit mode is derived from special, not prog...
 (add-hook 'magit-mode 'centered-cursor-mode)
 (add-hook 'prog-mode-hook 'evil-quickscope-mode)
+(add-hook 'prog-mode-hook 'evil-fringe-mark-mode)
+(setq-default right-fringe-width 16)
+(setq-default evil-fringe-mark-side 'right-fringe)
+(setq-default evil-fringe-mark-show-special t)
 (add-hook 'lisp-mode-hook 'evil-cleverparens-mode)
+(add-hook 'org-mode-hook 'org-bullets-mode)
+
+;; Use anonymous start buffer
+(setq initial-buffer-choice (lambda () (get-buffer-create "**")))
 
 ;; LSP config
 (defun disable-lsp-ui-sideline-mode () (lsp-ui-sideline-enable nil))
@@ -28,6 +37,15 @@
 (add-to-list 'purpose-user-mode-purposes '(clojurescript-mode . clj))
 (add-to-list 'purpose-user-mode-purposes '(cider-repl-mode . crm))
 (purpose-compile-user-configuration)
+
+;; Disable auto-revert messages
+(setq auto-revert-verbose nil)
+
+;; Latex
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(setq TeX-PDF-mode t)
 
 ;; Modeline settings
 (doom-modeline-def-segment purpose-status
@@ -92,6 +110,20 @@
 
 ;; Add auto-alignment in clojure
 (setq clojure-align-forms-automatically t)
+
+(setq org-capture-templates
+    '(("t" "Todo" entry (file "~/Org/Refile.org")
+       "* TODO %?\n%U" :empty-lines 1)
+      ("T" "Todo with Clipboard" entry (file "~/Org/Refile.org")
+       "* TODO %?\n%U\n   %c" :empty-lines 1)
+      ("n" "Note" entry (file "~/Org/Refile.org")
+       "* NOTE %?\n%U" :empty-lines 1)
+      ("N" "Note with Clipboard" entry (file "~/Org/Refile.org")
+       "* NOTE %?\n%U\n   %c" :empty-lines 1)
+      ("e" "Event" entry (file+headline "~/Org/Events.org" "Transient")
+       "* EVENT %?\n%U" :empty-lines 1)
+      ("E" "Event With Clipboard" entry (file+headline "~/Org/Events.org" "Transient")
+       "* EVENT %?\n%U\n   %c" :empty-lines 1)))
 
 ;; Correct file encoding on windows
 (setq utf-translate-cjk-mode nil)
