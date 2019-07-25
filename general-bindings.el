@@ -11,8 +11,8 @@
   :states     'normal
   "j"         'undo
   "l"         'evil-set-marker
-  "k"         'evil-search-next
-  "K"         'evil-search-previous
+  "k"         'evil-ex-search-next
+  "K"         'evil-ex-search-previous
   "£"         'switch-buffer-without-purpose
   "gl"        'evil-lion-left
   "gL"        'evil-lion-right
@@ -27,8 +27,8 @@
 ;; Other keys involving motion state
 (general-def
   :states     'motion
-  "k"         'evil-search-next
-  "K"         'evil-search-previous
+  "k"         'evil-ex-search-next
+  "K"         'evil-ex-search-previous
   "£"         'switch-buffer-without-purpose
   "ª"         'counsel-switch-buffer)
 
@@ -198,7 +198,7 @@
 (defvar repl-history-navigation-mode-map
   (make-keymap) "repl-history-navigation-mode keymap.")
 (general-def
-  :keymaps 'repl-history-navigation-mode-map
+  :keymaps    'repl-history-navigation-mode-map
   "<M-up>"    'cider-repl-previous-input
   "<M-down>"  'cider-repl-next-input)
 (define-minor-mode repl-history-navigation-mode
@@ -207,6 +207,16 @@
   " repl-history-nav"
   repl-history-navigation-mode-map)
 (add-hook 'cider-repl-mode-hook 'repl-history-navigation-mode)
+
+(general-unbind '(normal motion) "C-e")
+(general-unbind
+  :keymaps    '(evil-mc-key-map evil-normal-state-map)
+  "C-n")
+
+(general-def
+  :keymaps    'cider-mode-map
+  "C-e"       'cider-eval-sexp-at-point
+  "C-n"       'cider-repl-set-ns)
 
 ;; Smartparens overrides
 (general-def 'smartparens-mode-map "M-v" 'evil-select-in-line)
@@ -220,3 +230,17 @@
   "M-l"       'linum-mode
   "("         'evil-previous-open-paren
   ")"         'evil-next-close-paren)
+
+(defvar tex-fold-key-mode-map
+  (make-keymap) "tex-fold-mode keymap.")
+(general-def
+  :states     'normal
+  :keymaps    'tex-fold-key-mode-map
+  "zc"        'TeX-fold-dwim
+  "zo"        'TeX-fold-dwim)
+(define-minor-mode tex-fold-key-mode
+  "Mode to allow keybindings for tex folding"
+  nil ;; Init-value
+  " tex-folding"
+  tex-fold-key-mode-map)
+(add-hook 'TeX-mode-hook 'tex-fold-key-mode)

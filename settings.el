@@ -15,6 +15,7 @@
 (setq-default evil-fringe-mark-show-special t)
 (add-hook 'lisp-mode-hook 'evil-cleverparens-mode)
 (add-hook 'org-mode-hook 'org-bullets-mode)
+(add-hook 'TeX-mode-hook 'TeX-fold-mode)
 
 ;; Use anonymous start buffer
 (setq initial-buffer-choice (lambda () (get-buffer-create "**")))
@@ -28,6 +29,7 @@
                 clojurescript-mode-hook))
   (add-hook hook 'disable-lsp-ui-sideline-mode)
   (add-hook hook 'lsp))
+(setq lsp-enable-snippet nil)
 
 ;; Purpose
 (purpose-mode)
@@ -84,6 +86,13 @@
 (setq highlight-indent-guides-method 'character)
 (setq highlight-indent-guides-responsive 'top)
 
+;; Evil search module
+(setq evil-search-module 'evil-search)
+
+;; Evil traces settings
+(evil-traces-mode)
+(evil-traces-use-diff-faces)
+
 ;; Highlight thing mode
 (setq highlight-thing-delay-seconds 0.3)
 
@@ -110,6 +119,12 @@
 
 ;; Add auto-alignment in clojure
 (setq clojure-align-forms-automatically t)
+
+;; Setup cider for figwheel
+(setq cider-cljs-lein-repl
+	"(do (require 'figwheel-sidecar.repl-api)
+         (figwheel-sidecar.repl-api/start-figwheel!)
+         (figwheel-sidecar.repl-api/cljs-repl))")
 
 (setq org-capture-templates
     '(("t" "Todo" entry (file "~/Org/Refile.org")

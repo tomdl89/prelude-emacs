@@ -8,6 +8,7 @@
                             evil-lion
                             evil-mc
                             evil-quickscope
+                            evil-traces
                             general
                             highlight-indent-guides
                             highlight-thing
@@ -16,5 +17,6 @@
                             psession
                             restart-emacs
                             rjsx-mode
+                            smex
                             window-purpose
                             zerodark-theme))
