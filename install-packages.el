@@ -7,6 +7,7 @@
                             evil-leader
                             evil-lion
                             evil-mc
+                            evil-owl
                             evil-quickscope
                             evil-traces
                             general

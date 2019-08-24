@@ -11,9 +11,9 @@
   :states     'normal
   "j"         'undo
   "l"         'evil-set-marker
-  "k"         'evil-ex-search-next
-  "K"         'evil-ex-search-previous
-  "£"         'switch-buffer-without-purpose
+  "k"         'evil-search-next
+  "K"         'evil-search-previous
+  "£"         'frog-jump-buffer
   "gl"        'evil-lion-left
   "gL"        'evil-lion-right
   "gm"        'evil-next-visual-line
@@ -27,9 +27,9 @@
 ;; Other keys involving motion state
 (general-def
   :states     'motion
-  "k"         'evil-ex-search-next
-  "K"         'evil-ex-search-previous
-  "£"         'switch-buffer-without-purpose
+  "k"         'evil-search-next
+  "K"         'evil-search-previous
+  "£"         'frog-jump-buffer
   "ª"         'counsel-switch-buffer)
 
 ;; Other keys involving insert mode
@@ -47,8 +47,7 @@
   "C-*"       'highlight-thing-mode
   "C-S-f"     'vc-git-grep
   "C-M-m"     'evil-mc-make-cursor-move-next-line
-  "M-l"       'linum-mode
-  "C-r"       'evil-show-registers)
+  "M-l"       'linum-mode)
 
 ;; Other keys involving visual mode
 (general-def
@@ -100,7 +99,8 @@
   "h"         'evil-forward-char
   "l"         'dired-mark
   "L"         'dired-unmark
-  "C-S-l"     'dired-do-load)
+  "C-S-l"     'dired-do-load
+  "<SPC>"     'avy-goto-char)
 
 ;; Custom functions
 (defun evil-paste-after-from-zero (count)
@@ -187,7 +187,7 @@
   "<return>"  'magit-visit-thing
   "SPC"       'avy-goto-asterisk
   "<C-tab>"   'ace-window
-  "£"         'counsel-switch-buffer
+  "£"         'frog-jump-buffer
   "C-£"       'counsel-find-file
   "M-£"       'magit-mode-bury-buffer
   "<f3>"      'counsel-recentf)

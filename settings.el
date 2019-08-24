@@ -1,8 +1,10 @@
 (setq guru-global-mode nil) ;; Incredibly irritating mode
+(setq guru-mode nil) ;; Incredibly irritating mode
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
-(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+;(add-hook 'window-setup-hook 'toggle-frame-fullscreen t) ;; Not needed in i3!
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'evil-commentary-mode)
+(add-hook 'prog-mode-hook 'evil-owl-mode)
 (add-hook 'prog-mode-hook 'centered-cursor-mode)
 ;; Cider repl mode is derived from fundamental, not prog...
 (add-hook 'cider-repl-mode-hook 'centered-cursor-mode)
@@ -16,6 +18,13 @@
 (add-hook 'lisp-mode-hook 'evil-cleverparens-mode)
 (add-hook 'org-mode-hook 'org-bullets-mode)
 (add-hook 'TeX-mode-hook 'TeX-fold-mode)
+
+;; Change directory to othersRepos when starting
+(cd "~/othersrepos/")
+
+;; Make recentf list length much longer
+(setq recentf-max-menu-items 200)
+(setq recentf-max-saved-items 200)
 
 ;; Use anonymous start buffer
 (setq initial-buffer-choice (lambda () (get-buffer-create "**")))
@@ -58,20 +67,21 @@
   '(bar workspace-name window-number modals matches
     buffer-info " " purpose-status remote-host selection-info)
   '(objed-state persp-name fancy-battery irc mu4e github debug lsp
-    minor-modes input-method " " major-mode process vcs checker misc-info))
+                minor-modes input-method " " major-mode process vcs checker))
 (defun setup-custom-doom-modeline ()
   (doom-modeline-set-modeline 'tomline 'default))
 (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
-(setq doom-modeline-height 10)
+(setq doom-modeline-height 1)
+(set-face-attribute 'mode-line nil :height 100)
 (setq doom-modeline-buffer-file-name-style 'truncate-except-project)
 (doom-modeline-mode 1)
 (setq which-function-mode nil)
 
 ;; Time in modeline
-(setq display-time-string-forms
-      '((propertize (format-time-string "%H:%M" now) 'face 'bold)))
-(setq display-time-default-load-average nil)
-(display-time-mode 1)
+;; (setq display-time-string-forms
+;;       '((propertize (format-time-string "%H:%M" now) 'face 'bold)))
+;; (setq display-time-default-load-average nil)
+;; (display-time-mode 1)
 
 ;; Purpose settings
 (setq purpose-layout-dirs '("~/.emacs.d/personal/layouts/"))
@@ -86,8 +96,8 @@
 (setq highlight-indent-guides-method 'character)
 (setq highlight-indent-guides-responsive 'top)
 
-;; Evil search module
-(setq evil-search-module 'evil-search)
+;; Evil search module - only worth enabling for cgn
+;(setq evil-search-module 'evil-search)
 
 ;; Evil traces settings
 (evil-traces-mode)
