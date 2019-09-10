@@ -1,5 +1,5 @@
-(setq guru-global-mode nil) ;; Incredibly irritating mode
-(setq guru-mode nil) ;; Incredibly irritating mode
+;(setq guru-global-mode nil) ;; Incredibly irritating mode
+;(setq guru-mode nil) ;; Incredibly irritating mode
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 ;(add-hook 'window-setup-hook 'toggle-frame-fullscreen t) ;; Not needed in i3!
 (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -149,6 +149,9 @@
        "* EVENT %?\n%U" :empty-lines 1)
       ("E" "Event With Clipboard" entry (file+headline "~/Org/Events.org" "Transient")
        "* EVENT %?\n%U\n   %c" :empty-lines 1)))
+
+;; Ace-window dispatch always
+(setq aw-dispatch-always t)
 
 ;; Correct file encoding on windows
 (setq utf-translate-cjk-mode nil)

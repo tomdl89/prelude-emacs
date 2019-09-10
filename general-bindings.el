@@ -13,7 +13,7 @@
   "l"         'evil-set-marker
   "k"         'evil-search-next
   "K"         'evil-search-previous
-  "£"         'frog-jump-buffer
+  "£"         'switch-buffer-without-purpose
   "gl"        'evil-lion-left
   "gL"        'evil-lion-right
   "gm"        'evil-next-visual-line
@@ -29,7 +29,7 @@
   :states     'motion
   "k"         'evil-search-next
   "K"         'evil-search-previous
-  "£"         'frog-jump-buffer
+  "£"         'switch-buffer-without-purpose
   "ª"         'counsel-switch-buffer)
 
 ;; Other keys involving insert mode
@@ -187,7 +187,7 @@
   "<return>"  'magit-visit-thing
   "SPC"       'avy-goto-asterisk
   "<C-tab>"   'ace-window
-  "£"         'frog-jump-buffer
+  "£"         'switch-buffer-without-purpose
   "C-£"       'counsel-find-file
   "M-£"       'magit-mode-bury-buffer
   "<f3>"      'counsel-recentf)
