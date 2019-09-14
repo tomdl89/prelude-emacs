@@ -38,14 +38,15 @@
   "M-£"       'kill-this-buffer
   "C-£"       'purpose-switch-buffer-with-purpose
   "C-M-£"     'kill-some-buffers
-  "<f3>"      'find-file-without-purpose
-  "<M-f3>"    'purpose-find-file-overload
-  "<C-f3>"    'counsel-recentf
-  "<S-f3>"    'counsel-find-file
+  "<f3><f3>"  'find-file-without-purpose
+  "<f3>g"     'counsel-git
+  "<f3>p"     'purpose-find-file-overload
+  "<f3>r"     'counsel-recentf
   "C-a"       'mark-whole-buffer
   "<C-m>"     'evil-scroll-down
   "C-*"       'highlight-thing-mode
-  "C-S-f"     'vc-git-grep
+  "C-f"       'counsel-rg
+  "C-S-f"     'deadgrep
   "C-M-m"     'evil-mc-make-cursor-move-next-line
   "M-l"       'linum-mode)
 
@@ -67,13 +68,32 @@
   :keymaps    'override
   "<escape>"  'keyboard-escape-quit
   "C-c ESC"   'ignore)
-(general-def 'ctl-x-map [escape] 'ignore)
+(general-def  'ctl-x-map [escape] 'ignore)
+
+;; Ivy immediate done
+(general-def
+  :keymaps     'ivy-mode-map
+  "<C-return>" 'ivy-immediate-done)
+
+;; Deadgrep
+(general-def
+  :keymaps    'deadgrep-mode-map
+  :states     'normal
+  "<return>"  'deadgrep-visit-result
+  "o"         'deadgrep-visit-result-other-window
+  "<tab>"     'deadgrep-toggle-file-results)
 
 ;; Avy keys
 (setq avy-keys '(?n ?t ?i ?e ?o ?s ?h ?a ?g ?y ?l ?w ?r ?d))
 (general-def '(motion normal) "SPC" 'avy-goto-char)
 (setq aw-keys '(?n ?i ?h ?y ?l ?r ?t ?e ?s ?a ?g ?w ?d))
 (setq aw-scope 'frame)
+(defun toggle-aw-dispatch-always ()
+  (interactive)
+  (if aw-dispatch-always
+      (setq aw-dispatch-always nil)
+    (setq aw-dispatch-always t)))
+(general-def "<C-M-tab>" 'toggle-aw-dispatch-always)
 (general-def "<C-tab>" 'ace-window)
 
 ;; Resize windows
@@ -161,7 +181,7 @@
   "Start ex command with single-line replace prefix"
   (interactive)
   (evil-ex "s/"))
-(general-def '(normal insert) "C-f" 'evil-ex-replace)
+;;(general-def '(normal insert) "C-f" 'evil-ex-replace)
 
 (defun evil-select-in-line ()
   "Select all text in a line, but not the whole line"
@@ -188,9 +208,11 @@
   "SPC"       'avy-goto-asterisk
   "<C-tab>"   'ace-window
   "£"         'switch-buffer-without-purpose
-  "C-£"       'counsel-find-file
-  "M-£"       'magit-mode-bury-buffer
-  "<f3>"      'counsel-recentf)
+  "<f3><f3>"  'find-file-without-purpose
+  "<f3>g"     'counsel-git
+  "<f3>p"     'purpose-find-file-overload
+  "<f3>r"     'counsel-recentf)
+
 (general-def
   "<f13>"     'magit-status
   "<S-f13>"   'magit-log)

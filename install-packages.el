@@ -1,4 +1,5 @@
 (prelude-require-packages '(centered-cursor-mode
+                            deadgrep
                             doom-modeline
                             evil-cleverparens
                             evil-commentary
