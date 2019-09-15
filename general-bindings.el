@@ -45,8 +45,8 @@
   "C-a"       'mark-whole-buffer
   "<C-m>"     'evil-scroll-down
   "C-*"       'highlight-thing-mode
-  "C-f"       'counsel-rg
-  "C-S-f"     'deadgrep
+  "C-f"       'counsel-rg ; "C-S-f" is defined below
+  "C-S-d"     'deadgrep
   "C-M-m"     'evil-mc-make-cursor-move-next-line
   "M-l"       'linum-mode)
 
@@ -75,13 +75,27 @@
   :keymaps     'ivy-mode-map
   "<C-return>" 'ivy-immediate-done)
 
-;; Deadgrep
+;; Counsel-rg
+(defun ivy-with-thing-at-point (cmd)
+  (let ((ivy-initial-inputs-alist
+         (list
+          (cons cmd (thing-at-point 'symbol)))))
+    (funcall cmd)))
+(defun counsel-rg-thing-at-point ()
+  (interactive)
+  (ivy-with-thing-at-point 'counsel-rg))
+(general-def :states '(normal insert) "C-S-f" 'counsel-rg-thing-at-point)
+;; `C-c C-o` to bring up results buffer, and `w` to make editable
+
+;; Deadgrep - counsel-rg usually preferred because of better replace
 (general-def
-  :keymaps    'deadgrep-mode-map
+  :keymaps    '(deadgrep-mode-map deadgrep-edit-mode-map)
   :states     'normal
-  "<return>"  'deadgrep-visit-result
+  "RET"       'deadgrep-visit-result
   "o"         'deadgrep-visit-result-other-window
   "<tab>"     'deadgrep-toggle-file-results)
+(general-def :keymaps 'deadgrep-mode-map :states 'normal "i" 'deadgrep-edit-mode)
+(general-def :keymaps 'deadgrep-edit-mode-map :states 'normal "<escape>" 'deadgrep-mode)
 
 ;; Avy keys
 (setq avy-keys '(?n ?t ?i ?e ?o ?s ?h ?a ?g ?y ?l ?w ?r ?d))
