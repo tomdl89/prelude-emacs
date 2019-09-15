@@ -1,79 +1,79 @@
 ;; Basic movement keys
 (general-def
-  :states     '(motion normal visual)
-  "m"         'evil-next-line
-  "u"         'evil-previous-line
-  "n"         'evil-backward-char
-  "h"         'evil-forward-char)
+  :states           '(motion normal visual)
+  "m"               'evil-next-line
+  "u"               'evil-previous-line
+  "n"               'evil-backward-char
+  "h"               'evil-forward-char)
 
 ;; Other normal keys
 (general-def
-  :states     'normal
-  "j"         'undo
-  "l"         'evil-set-marker
-  "k"         'evil-search-next
-  "K"         'evil-search-previous
-  "£"         'switch-buffer-without-purpose
-  "gl"        'evil-lion-left
-  "gL"        'evil-lion-right
-  "gm"        'evil-next-visual-line
-  "gu"        'evil-previous-visual-line
-  "gj"        'evil-downcase
-  "zz"        'centered-cursor-mode
-  "X"         'fixup-whitespace
-  "<S-tab>"   'evil-jump-backward
+  :states           'normal
+  "j"               'undo
+  "l"               'evil-set-marker
+  "k"               'evil-search-next
+  "K"               'evil-search-previous
+  "£"               'switch-buffer-without-purpose
+  "gl"              'evil-lion-left
+  "gL"              'evil-lion-right
+  "gm"              'evil-next-visual-line
+  "gu"              'evil-previous-visual-line
+  "gj"              'evil-downcase
+  "zz"              'centered-cursor-mode
+  "X"               'fixup-whitespace
+  "<S-tab>"         'evil-jump-backward
   "<S-iso-lefttab>" 'evil-jump-backward)
 
 ;; Other keys involving motion state
 (general-def
-  :states     'motion
-  "k"         'evil-search-next
-  "K"         'evil-search-previous
-  "£"         'switch-buffer-without-purpose
-  "ª"         'counsel-switch-buffer)
+  :states           'motion
+  "k"               'evil-search-next
+  "K"               'evil-search-previous
+  "£"               'switch-buffer-without-purpose
+  "ª"               'counsel-switch-buffer)
 
 ;; Other keys involving insert mode
 (general-def
-  :states     '(normal insert)
-  "M-£"       'kill-this-buffer
-  "C-£"       'purpose-switch-buffer-with-purpose
-  "C-M-£"     'kill-some-buffers
-  "<f3><f3>"  'find-file-without-purpose
-  "<f3>g"     'counsel-git
-  "<f3>p"     'purpose-find-file-overload
-  "<f3>r"     'counsel-recentf
-  "C-a"       'mark-whole-buffer
-  "<C-m>"     'evil-scroll-down
-  "C-*"       'highlight-thing-mode
-  "C-f"       'counsel-rg ; "C-S-f" is defined below
-  "C-S-d"     'deadgrep
-  "C-M-m"     'evil-mc-make-cursor-move-next-line
-  "M-l"       'linum-mode)
+  :states           '(normal insert)
+  "M-£"             'kill-this-buffer
+  "C-£"             'purpose-switch-buffer-with-purpose
+  "C-M-£"           'kill-some-buffers
+  "<f3><f3>"        'find-file-without-purpose
+  "<f3>g"           'counsel-git
+  "<f3>p"           'purpose-find-file-overload
+  "<f3>r"           'counsel-recentf
+  "C-a"             'mark-whole-buffer
+  "<C-m>"           'evil-scroll-down
+  "C-*"             'highlight-thing-mode
+  "C-f"             'counsel-rg ; "C-S-f" is defined below
+  "C-S-d"           'deadgrep
+  "C-M-m"           'evil-mc-make-cursor-move-next-line
+  "M-l"             'linum-mode)
 
 ;; Other keys involving visual mode
 (general-def
-  :states     'visual
-  "gx"        'evil-exchange)
+  :states           'visual
+  "gx"              'evil-exchange)
 
 ;; Sexp keys involving insert
 (general-def
-  :states     '(normal insert)
-  "C-."       'sp-forward-slurp-sexp
-  "C-,"       'sp-backward-slurp-sexp
-  "C->"       'sp-forward-barf-sexp
-  "C-<"       'sp-backward-barf-sexp)
+  :states           '(normal insert)
+  "C-."             'sp-forward-slurp-sexp
+  "C-,"             'sp-backward-slurp-sexp
+  "C->"             'sp-forward-barf-sexp
+  "C-<"             'sp-backward-barf-sexp)
 
 ;; Handle escape
 (general-def
-  :keymaps    'override
-  "<escape>"  'keyboard-escape-quit
-  "C-c ESC"   'ignore)
-(general-def  'ctl-x-map [escape] 'ignore)
+  :keymaps          'override
+  "<escape>"        'keyboard-escape-quit
+  "C-c ESC"         'ignore)
+(general-def 'ctl-x-map [escape] 'ignore)
 
 ;; Ivy immediate done
 (general-def
-  :keymaps     'ivy-mode-map
-  "<C-return>" 'ivy-immediate-done)
+  :keymaps          'ivy-mode-map
+  "<C-return>"      'ivy-immediate-done)
 
 ;; Counsel-rg
 (defun ivy-with-thing-at-point (cmd)
@@ -89,11 +89,11 @@
 
 ;; Deadgrep - counsel-rg usually preferred because of better replace
 (general-def
-  :keymaps    '(deadgrep-mode-map deadgrep-edit-mode-map)
-  :states     'normal
-  "RET"       'deadgrep-visit-result
-  "o"         'deadgrep-visit-result-other-window
-  "<tab>"     'deadgrep-toggle-file-results)
+  :keymaps          '(deadgrep-mode-map deadgrep-edit-mode-map)
+  :states           'normal
+  "RET"             'deadgrep-visit-result
+  "o"               'deadgrep-visit-result-other-window
+  "<tab>"           'deadgrep-toggle-file-results)
 (general-def :keymaps 'deadgrep-mode-map :states 'normal "i" 'deadgrep-edit-mode)
 (general-def :keymaps 'deadgrep-edit-mode-map :states 'normal "<escape>" 'deadgrep-mode)
 
@@ -113,28 +113,28 @@
 ;; Resize windows
 (general-def
   ;; Guru-mode needs uninstalling for this to work
-  "<C-up>"    'enlarge-window
-  "<C-down>"  'shrink-window
-  "<C-left>"  'enlarge-window-horizontally
-  "<C-right>" 'shrink-window-horizontally)
+  "<C-up>"          'enlarge-window
+  "<C-down>"        'shrink-window
+  "<C-left>"        'enlarge-window-horizontally
+  "<C-right>"       'shrink-window-horizontally)
 
 ;; Purpose
 (general-def
-  "<f7>"      'purpose-load-window-layout
-  "<C-f7>"    'purpose-save-window-layout)
+  "<f7>"            'purpose-load-window-layout
+  "<C-f7>"          'purpose-save-window-layout)
 
 ;; Dired
 (general-def
-  :states     'normal
-  :keymaps    'dired-mode-map
-  "m"         'evil-next-line
-  "u"         'evil-previous-line
-  "n"         'evil-backward-char
-  "h"         'evil-forward-char
-  "l"         'dired-mark
-  "L"         'dired-unmark
-  "C-S-l"     'dired-do-load
-  "<SPC>"     'avy-goto-char)
+  :states           'normal
+  :keymaps          'dired-mode-map
+  "m"               'evil-next-line
+  "u"               'evil-previous-line
+  "n"               'evil-backward-char
+  "h"               'evil-forward-char
+  "l"               'dired-mark
+  "L"               'dired-unmark
+  "C-S-l"           'dired-do-load
+  "<SPC>"           'avy-goto-char)
 
 ;; Custom functions
 (defun evil-paste-after-from-zero (count)
@@ -144,10 +144,10 @@
   "Paste before from yank register, rather than unnamed register"
   (interactive "P<x>") (evil-paste-before count ?0))
 (general-def
-  :states     '(normal visual)
-  :keymaps    '(global evil-mc-key-map)
-  "C-p"       'evil-paste-after-from-zero
-  "C-S-p"     'evil-paste-before-from-zero)
+  :states           '(normal visual)
+  :keymaps          '(global evil-mc-key-map)
+  "C-p"             'evil-paste-after-from-zero
+  "C-S-p"           'evil-paste-before-from-zero)
 
 (defun avy-goto-asterisk ()
   "Use avy-goto-char with asterisk, for navigating magit log"
@@ -173,11 +173,11 @@
     (evil-search-word nil nil t)))
 
 (general-def
-  :states     '(normal motion visual)
-  "*"         'evil-search-symbol-forward
-  "M-*"       'evil-search-word-forward
-  "#"         'evil-search-symbol-backward
-  "M-#"       'evil-search-word-backward)
+  :states           '(normal motion visual)
+  "*"               'evil-search-symbol-forward
+  "M-*"             'evil-search-word-forward
+  "#"               'evil-search-symbol-backward
+  "M-#"             'evil-search-word-backward)
 
 (defun evil-insert-line-below-and-above ()
   "Open a line below and above the current line"
@@ -209,27 +209,27 @@
 
 ;; Magit overrides
 (general-def
-  :keymaps    '(magit-mode-map
-                magit-file-section-map
-                magit-unstaged-section-map
-                magit-staged-section-map
-                magit-hunk-section-map)
-  "u"         'evil-previous-line
-  "C-u"       'magit-unstage
-  "m"         'evil-next-line
-  "<C-m>"     'magit-merge
-  "<return>"  'magit-visit-thing
-  "SPC"       'avy-goto-asterisk
-  "<C-tab>"   'ace-window
-  "£"         'switch-buffer-without-purpose
-  "<f3><f3>"  'find-file-without-purpose
-  "<f3>g"     'counsel-git
-  "<f3>p"     'purpose-find-file-overload
-  "<f3>r"     'counsel-recentf)
+  :keymaps          '(magit-mode-map
+                      magit-file-section-map
+                      magit-unstaged-section-map
+                      magit-staged-section-map
+                      magit-hunk-section-map)
+  "u"               'evil-previous-line
+  "C-u"             'magit-unstage
+  "m"               'evil-next-line
+  "<C-m>"           'magit-merge
+  "<return>"        'magit-visit-thing
+  "SPC"             'avy-goto-asterisk
+  "<C-tab>"         'ace-window
+  "£"               'switch-buffer-without-purpose
+  "<f3><f3>"        'find-file-without-purpose
+  "<f3>g"           'counsel-git
+  "<f3>p"           'purpose-find-file-overload
+  "<f3>r"           'counsel-recentf)
 
 (general-def
-  "<f13>"     'magit-status
-  "<S-f13>"   'magit-log)
+  "<f13>"           'magit-status
+  "<S-f13>"         'magit-log)
 
 (defvar repl-history-navigation-mode-map
   (make-keymap) "repl-history-navigation-mode keymap.")
@@ -250,30 +250,30 @@
   "C-n")
 
 (general-def
-  :keymaps    'cider-mode-map
-  "C-e"       'cider-eval-sexp-at-point
-  "C-n"       'cider-repl-set-ns)
+  :keymaps          'cider-mode-map
+  "C-e"             'cider-eval-sexp-at-point
+  "C-n"             'cider-repl-set-ns)
 
 ;; Smartparens overrides
 (general-def 'smartparens-mode-map "M-v" 'evil-select-in-line)
 
 ;; Cleverparens overrides
 (general-def
-  :states     '(normal visual)
-  :keymaps    '(global evil-cleverparens-mode-map)
-  "{"         'evil-backward-paragraph
-  "}"         'evil-forward-paragraph
-  "M-l"       'linum-mode
-  "("         'evil-previous-open-paren
-  ")"         'evil-next-close-paren)
+  :states           '(normal visual)
+  :keymaps          '(global evil-cleverparens-mode-map)
+  "{"               'evil-backward-paragraph
+  "}"               'evil-forward-paragraph
+  "M-l"             'linum-mode
+  "("               'evil-previous-open-paren
+  ")"               'evil-next-close-paren)
 
 (defvar tex-fold-key-mode-map
   (make-keymap) "tex-fold-mode keymap.")
 (general-def
-  :states     'normal
-  :keymaps    'tex-fold-key-mode-map
-  "zc"        'TeX-fold-dwim
-  "zo"        'TeX-fold-dwim)
+  :states           'normal
+  :keymaps          'tex-fold-key-mode-map
+  "zc"              'TeX-fold-dwim
+  "zo"              'TeX-fold-dwim)
 (define-minor-mode tex-fold-key-mode
   "Mode to allow keybindings for tex folding"
   nil ;; Init-value
