@@ -205,7 +205,8 @@
   (evil-end-of-line))
 
 ;; Differentiate C-m from RET
-(general-def input-decode-map [?\C-m] [C-m])
+(when (display-graphic-p)
+  (general-def input-decode-map [?\C-m] [C-m]))
 
 ;; Magit overrides
 (general-def
@@ -217,7 +218,7 @@
   "u"               'evil-previous-line
   "C-u"             'magit-unstage
   "m"               'evil-next-line
-  "<C-m>"           'magit-merge
+  "<C-m>"           'magit-merge ;; This will bind RET in terminal mode
   "<return>"        'magit-visit-thing
   "SPC"             'avy-goto-asterisk
   "<C-tab>"         'ace-window
