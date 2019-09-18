@@ -118,6 +118,17 @@
   "<C-left>"        'enlarge-window-horizontally
   "<C-right>"       'shrink-window-horizontally)
 
+;; Find-file with pre-filled directory
+(defun find-file-emacs-personal-dir (filename &optional wildcards)
+  (interactive
+   (list (read-file-name "Find file: " "~/.emacs.d/personal/" nil
+                         (confirm-nonexistent-file-or-buffer))))
+  (let ((value (find-file-noselect filename nil nil wildcards)))
+    (if (listp value)
+        (mapcar 'pop-to-buffer-same-window (nreverse value))
+      (pop-to-buffer-same-window value))))
+(general-def :states '(normal insert) "<f3>e" 'find-file-emacs-personal-dir)
+
 ;; Purpose
 (general-def
   "<f7>"            'purpose-load-window-layout
