@@ -239,7 +239,8 @@
   "<f3><f3>"        'find-file-without-purpose
   "<f3>g"           'counsel-git
   "<f3>p"           'purpose-find-file-overload
-  "<f3>r"           'counsel-recentf)
+  "<f3>r"           'counsel-recentf
+  "<f3>e"           'find-file-emacs-personal-dir)
 
 (general-def
   "<f13>"           'magit-status

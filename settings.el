@@ -9,13 +9,12 @@
 ;; Cider repl mode is derived from fundamental, not prog...
 (add-hook 'cider-repl-mode-hook 'centered-cursor-mode)
 ;; Magit mode is derived from special, not prog...
-(add-hook 'magit-mode 'centered-cursor-mode)
+(add-hook 'magit-mode-hook 'centered-cursor-mode)
 (add-hook 'prog-mode-hook 'evil-quickscope-mode)
 (add-hook 'prog-mode-hook 'evil-fringe-mark-mode)
 (setq-default right-fringe-width 16)
 (setq-default evil-fringe-mark-side 'right-fringe)
 (setq-default evil-fringe-mark-show-special t)
-(add-hook 'lisp-mode-hook 'evil-cleverparens-mode)
 (add-hook 'org-mode-hook 'org-bullets-mode)
 (add-hook 'TeX-mode-hook 'TeX-fold-mode)
 
@@ -57,6 +56,10 @@
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 (setq TeX-PDF-mode t)
+
+;; Require evil-anzu for search counts in modeline
+(with-eval-after-load 'evil
+  (require 'evil-anzu))
 
 ;; Modeline settings
 (doom-modeline-def-segment purpose-status
@@ -123,9 +126,13 @@
 ;; Add jsxinc to auto mode list
  (add-to-list 'auto-mode-alist '("\\.jsxinc\\'" . js-jsx-mode))
 
-;; Evil-clever-parens in lisps
-(add-hook 'clojure-mode #'evil-cleverparens-mode)
-(add-hook 'lisp-mode    #'evil-cleverparens-mode)
+;; (require 'smartparens-config)
+(add-hook 'clojure-mode-hook 'smartparens-mode)
+(add-hook 'clojure-mode-hook 'smartparens-strict-mode)
+(add-hook 'clojure-mode-hook 'evil-cleverparens-mode)
+(add-hook 'lisp-mode-hook    'smartparens-mode)
+(add-hook 'lisp-mode-hook    'smartparens-strict-mode)
+(add-hook 'lisp-mode-hook    'evil-cleverparens-mode)
 
 ;; Add auto-alignment in clojure
 (setq clojure-align-forms-automatically t)
