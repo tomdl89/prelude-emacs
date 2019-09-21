@@ -1,7 +1,9 @@
 (prelude-require-packages '(adoc-mode
                             centered-cursor-mode
+                            clj-refactor
                             deadgrep
                             doom-modeline
+                            evil-anzu
                             evil-cleverparens
                             evil-commentary
                             evil-exchange

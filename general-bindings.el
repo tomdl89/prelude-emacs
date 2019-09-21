@@ -11,8 +11,8 @@
   :states           'normal
   "j"               'undo
   "l"               'evil-set-marker
-  "k"               'evil-search-next
-  "K"               'evil-search-previous
+  "k"               'evil-ex-search-next
+  "K"               'evil-ex-search-previous
   "£"               'switch-buffer-without-purpose
   "gl"              'evil-lion-left
   "gL"              'evil-lion-right
@@ -27,10 +27,9 @@
 ;; Other keys involving motion state
 (general-def
   :states           'motion
-  "k"               'evil-search-next
-  "K"               'evil-search-previous
-  "£"               'switch-buffer-without-purpose
-  "ª"               'counsel-switch-buffer)
+  "k"               'evil-ex-search-next
+  "K"               'evil-ex-search-previous
+  "£"               'switch-buffer-without-purpose)
 
 ;; Other keys involving insert mode
 (general-def
@@ -54,6 +53,9 @@
 (general-def
   :states           'visual
   "gx"              'evil-exchange)
+
+;; Kill non-evil buffers
+(general-def "M-£" 'kill-this-buffer)
 
 ;; Sexp keys involving insert
 (general-def
@@ -246,9 +248,10 @@
 (defvar repl-history-navigation-mode-map
   (make-keymap) "repl-history-navigation-mode keymap.")
 (general-def
-  :keymaps    'repl-history-navigation-mode-map
-  "<M-up>"    'cider-repl-previous-input
-  "<M-down>"  'cider-repl-next-input)
+  :keymaps          'repl-history-navigation-mode-map
+  "<M-up>"          'cider-repl-previous-input
+  "<M-down>"        'cider-repl-next-input
+  "<C-return>"      'cider-repl-newline-and-indent)
 (define-minor-mode repl-history-navigation-mode
   "Mode to allow keybindings for repl history navigation"
   nil ;; Init-value
@@ -267,7 +270,7 @@
   "C-n"             'cider-repl-set-ns)
 
 ;; Smartparens overrides
-(general-def 'smartparens-mode-map "M-v" 'evil-select-in-line)
+(general-def :keymaps '(smartparens-mode-map ccm-map) "M-v" 'evil-select-in-line)
 
 ;; Cleverparens overrides
 (general-def
