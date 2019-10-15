@@ -20,7 +20,6 @@
   "gu"              'evil-previous-visual-line
   "gj"              'evil-downcase
   "zz"              'centered-cursor-mode
-  "X"               'fixup-whitespace
   "<S-tab>"         'evil-jump-backward
   "<S-iso-lefttab>" 'evil-jump-backward)
 
@@ -47,7 +46,8 @@
   "C-f"             'counsel-rg ; "C-S-f" is defined below
   "C-S-d"           'deadgrep
   "C-M-m"           'evil-mc-make-cursor-move-next-line
-  "M-l"             'linum-mode)
+  "M-l"             'linum-mode
+  "M-;"             'sp-comment)
 
 ;; Other keys involving visual mode
 (general-def
@@ -280,6 +280,7 @@
   "{"               'evil-backward-paragraph
   "}"               'evil-forward-paragraph
   "M-l"             'linum-mode
+  "X"               'fixup-whitespace
   "("               'evil-previous-open-paren
   ")"               'evil-next-close-paren)
 

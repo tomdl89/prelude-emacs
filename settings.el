@@ -26,7 +26,10 @@
 (setq recentf-max-saved-items 200)
 
 ;; Use anonymous start buffer
-(setq initial-buffer-choice (lambda () (get-buffer-create "**")))
+(defun anon-note ()
+  (interactive)
+  (get-buffer-create "**"))
+(setq initial-buffer-choice 'anon-note)
 
 ;; LSP config
 (defun disable-lsp-ui-sideline-mode () (lsp-ui-sideline-enable nil))
